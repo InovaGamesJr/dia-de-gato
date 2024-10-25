@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://diinc0qndfy5w"]
+
+[ext_resource type="Texture2D" uid="uid://b3ip7xotxlv42" path="res://onda.aseprite" id="1_i76gp"]
+[ext_resource type="Script" path="res://script/ondas.gd" id="1_makaq"]
+
+[node name="ondas" type="CharacterBody2D"]
+modulate = Color(0, 0, 0, 1)
+rotation = 1.55334
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_makaq")
+
+[node name="AnimatedSprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.043631, -2.49962)
+scale = Vector2(0.5, 0.65516)
+texture = ExtResource("1_i76gp")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-2.8923, 22.4529)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(-2.38419e-07, 0)
+polygon = PackedVector2Array(-0.000895067, -1, -0.00447534, -5, 0.994629, -6.00089, 2.99373, -7.00268, 3.99194, -9.00358, 5.98747, -14.0054, 6.98299, -19.0063, 6.97852, -24.0063, 3.97046, -33.0036, -0.0340125, -38, -0.0366977, -41, 2.9633, -41.0027, 4.96599, -38.0045, 7.96867, -35.0071, 8.97314, -30.008, 10.9767, -26.0098, 10.9857, -16.0098, 8.99105, -10.0081, 3.99731, -3.00358)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=3 uid="uid://cw1162bux23ef"]
+
+[ext_resource type="Texture2D" uid="uid://bikm7iggo6tbf" path="res://icon.svg" id="1_a3fj2"]
+[ext_resource type="Script" path="res://script/nuts.gd" id="1_j6vbg"]
+[ext_resource type="Texture2D" uid="uid://ckpayq2h1iaei" path="res://tiles/spritesheet.png" id="3_12wky"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvn3p"]
+atlas = ExtResource("3_12wky")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_js4wa"]
+atlas = ExtResource("3_12wky")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2tty"]
+atlas = ExtResource("3_12wky")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_huxqs"]
+atlas = ExtResource("3_12wky")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jnrd1"]
+atlas = ExtResource("3_12wky")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pftcs"]
+atlas = ExtResource("3_12wky")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxb7w"]
+atlas = ExtResource("3_12wky")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4m71r"]
+atlas = ExtResource("3_12wky")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3cux3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gvn3p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_js4wa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2tty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_huxqs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jnrd1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pftcs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxb7w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4m71r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="nuts" type="CharacterBody2D"]
+scale = Vector2(0.2, 0.2)
+script = ExtResource("1_j6vbg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.436565, 0.00204594, 0.979483, 1)
+self_modulate = Color(0.435155, 0.385301, 0.740045, 1)
+position = Vector2(0, -13)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_a3fj2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-4.54747e-13, -10)
+scale = Vector2(0.3, 0.28)
+sprite_frames = SubResource("SpriteFrames_3cux3")
+frame_progress = 0.838286
