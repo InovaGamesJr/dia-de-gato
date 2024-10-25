@@ -3,6 +3,10 @@ Repositório para envio e versionamento do jogo Dia de Gato🐱‍👤
 
 <img src="https://godotengine.org/assets/press/icon_color_outline.png" width="5%">   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Logo_Aseprite.svg/640px-Logo_Aseprite.svg.png" width="5%">   <img src="https://w7.pngwing.com/pngs/885/629/png-transparent-miro-hd-logo.png" width="5%">
 
+# Diretores
+- **Iago Baldini** - Game Arte
+- **Matheus Coitinho** - Game Coding
+- **Caê Marques** - Game Design
 
 # Equipes e Responsabilidades
 ### Arte
