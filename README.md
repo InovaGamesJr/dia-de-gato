@@ -10,8 +10,12 @@ Repositório para envio e versionamento do jogo Dia de Gato🐱‍👤
 - **Caê Marques** - Game Design
 
 # Equipes e Responsabilidades
-### Arte
+
+### Design
 - **João Miguel**: Responsável por monitorar e sanar dúvidas dos artistas em relação ao [Game Design Document](https://docs.google.com/document/d/1M4Wph4pjcsxpqcV-By88bNAgbWqIHWhyxTupAB4sY24/edit?usp=sharing) e desenhar as fases do jogo.
+- **Fernando Ariel**: Responsável por monitorar e sanar dúvidas dos artistas em relação ao [Game Design Document](https://docs.google.com/document/d/1M4Wph4pjcsxpqcV-By88bNAgbWqIHWhyxTupAB4sY24/edit?usp=sharing)
+
+### Arte
 - **Iago Baldini**: Responsável por montar as fases do jogo no godot á partir dos rascunhos de João Miguel
 - **Luiz Sena**: Arte dos personagens em geral (inimigo, bosses, personagem principal e secundário(tutora do gato))
 - **Mª Clara**: Artes do cenário e seus elementos
