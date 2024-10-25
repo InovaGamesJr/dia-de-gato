@@ -13,8 +13,8 @@ Repositório para envio e versionamento do jogo Dia de Gato🐱‍👤
 
 ### Design
 - **Caê Marques**: Monitorar o trabalho dos outros game designers e fazer alterações necesárias no documento.
-- **João Miguel**: Responsável por monitorar e sanar dúvidas dos artistas em relação ao [Game Design Document](https://docs.google.com/document/d/1M4Wph4pjcsxpqcV-By88bNAgbWqIHWhyxTupAB4sY24/edit?usp=sharing) e desenhar as fases do jogo.
-- **Fernando Ariel**: Responsável por monitorar e sanar dúvidas dos artistas em relação ao [Game Design Document](https://docs.google.com/document/d/1M4Wph4pjcsxpqcV-By88bNAgbWqIHWhyxTupAB4sY24/edit?usp=sharing)
+- **João Miguel**: Responsável por monitorar e sanar dúvidas dos **artistas** em relação ao [Game Design Document](https://docs.google.com/document/d/1M4Wph4pjcsxpqcV-By88bNAgbWqIHWhyxTupAB4sY24/edit?usp=sharing) e desenhar as fases do jogo.
+- **Fernando Ariel**: Responsável por monitorar e sanar dúvidas dos **desenvolvedores** em relação ao [Game Design Document](https://docs.google.com/document/d/1M4Wph4pjcsxpqcV-By88bNAgbWqIHWhyxTupAB4sY24/edit?usp=sharing)
 
 ### Arte
 - **Iago Baldini**: Responsável por montar as fases do jogo no godot á partir dos rascunhos de João Miguel.
