@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d3uj32ivxcrpr"
+path="res://.godot/imported/tap.wav-9b88769ac5c982f8217c5ab023c877cb.sample"
+
+[deps]
+
+source_file="res://sprites/brackeys_platformer_assets (2)/brackeys_platformer_assets/sounds/tap.wav"
+dest_files=["res://.godot/imported/tap.wav-9b88769ac5c982f8217c5ab023c877cb.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
