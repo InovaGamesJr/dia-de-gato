@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjdl72te0khrv"]
+
+[ext_resource type="Script" path="res://character_body_2d.gd" id="1_fttlo"]
+[ext_resource type="Texture2D" uid="uid://dwptxt1mln5bg" path="res://Sprite/icon.svg" id="2_2cftc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4whll"]
+size = Vector2(23, 23)
+
+[node name="Hero" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_fttlo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_2cftc")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4whll")
+debug_color = Color(0.375106, 0.611599, 0.168163, 0.42)

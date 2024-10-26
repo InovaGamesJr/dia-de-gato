@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://dwok6jk07mqp5"]
+
+[ext_resource type="Script" path="res://Enemys/enemy_rat.gd" id="1_15hp6"]
+[ext_resource type="Texture2D" uid="uid://dwptxt1mln5bg" path="res://Sprite/icon.svg" id="1_htjib"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcubt"]
+atlas = ExtResource("1_htjib")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgdoy"]
+atlas = ExtResource("1_htjib")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1glal"]
+atlas = ExtResource("1_htjib")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_urgyd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcubt")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Death ",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qgdoy")
+}],
+"loop": true,
+"name": &"Fly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1glal")
+}],
+"loop": true,
+"name": &"Sleep",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0jubs"]
+size = Vector2(12, 12)
+
+[node name="Enemy_Rat" type="CharacterBody2D" groups=["Enemy_rat"]]
+collision_layer = 4
+script = ExtResource("1_15hp6")
+
+[node name="Rat Animations" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(1, 0.502265, 0.409968, 1)
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_urgyd")
+animation = &"Attack"
+autoplay = "Idle"
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0jubs")
+debug_color = Color(0.999547, 0, 0.109503, 0.42)
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-10, 0)
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+target_position = Vector2(10, 0)
