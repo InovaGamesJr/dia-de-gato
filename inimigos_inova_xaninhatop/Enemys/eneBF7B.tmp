@@ -41,7 +41,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0jubs"]
 size = Vector2(12, 12)
 
-[node name="Enemy_bat" type="CharacterBody2D" groups=["Enemy_Bat"]]
+[node name="Enemy_bat" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 8
 wall_min_slide_angle = 0.0
@@ -51,10 +51,10 @@ script = ExtResource("1_awfov")
 self_modulate = Color(1, 0.502265, 0.409968, 1)
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_urgyd")
-animation = &"Fly"
+animation = &"Death"
 autoplay = "Sleep"
 
-[node name="HitBox" type="CollisionShape2D" parent="."]
+[node name="HitBox" type="CollisionShape2D" parent="." groups=["Enemy_Bat"]]
 shape = SubResource("RectangleShape2D_0jubs")
 debug_color = Color(0.999547, 0, 0.109503, 0.42)
 

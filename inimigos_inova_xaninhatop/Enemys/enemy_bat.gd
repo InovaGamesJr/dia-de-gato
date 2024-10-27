@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-var wake_up = preload("res://Main/alarm.gd")
-
 @onready var bat_direction_timer: Timer = $Direction_Timer
 @onready var chase_timer: Timer = $Chase_Timer
 @onready var bat_vision: Area2D = $VisionArea
@@ -19,50 +17,53 @@ var dive : int = 0
 var direction  : Vector2
 var is_bat_chase : bool
 var is_sleep : bool
+var can_fly : bool
 
 func _ready():
 	is_sleep = true # ELE PERMANECE DORMINDO ATE QUE OU ELE ENTRE NA AREA DE VISAO DO MORCEGO OU PASSE POR UMA COLISAO ESPECIFICA
 	is_bat_chase = false # ELE OBVIAMENTE NAO VAI COMECAR A PERSEGUIR O INIMIGO
+	can_fly = false
 	chase_timer.wait_time = 2
 	current_state = bat_state.SLEEP
 
 func _process(delta : float):
 	bat_sleep(delta)
-	bat_awaken(delta)
 	bat_move(delta)
 	bat_chase(delta)
 	bat_tired(delta)
 	
 	handle_animation_states(delta)
-	
 	move_and_slide()
-	print("Dormindo: ", is_sleep)
-	print("\nAcordado: ", wake_up)	
 
 func bat_sleep(delta : float):
 	if is_sleep:
 		velocity.x = move_toward(velocity.x, 0, speed * delta)
-	elif !is_sleep:
-		is_bat_chase = true
 
-func bat_awaken(delta : float):
-	if wake_up:
+# FUNCAO QUE ACORDA O MORCEGO
+func bat_awaken():
+	if is_sleep:
 		is_sleep = false
+		can_fly = true
+		bat_direction_timer.start()
+	else:
+		return
 
 # FUNCAO PARA A VELOCIDADE DO MORCEGO
 func bat_move(delta : float):
-	if !is_bat_chase:
-		velocity += direction * speed * delta # AQUI ELE APENAS ASSUME A VELOCIDADE NORMAL DO MORCEGO QUANDO NAO ESTA PERSEGUINDO 
-	current_state = bat_state.FLY
+	if can_fly:
+		if !is_bat_chase:
+			velocity += direction * speed * delta # AQUI ELE APENAS ASSUME A VELOCIDADE NORMAL DO MORCEGO QUANDO NAO ESTA PERSEGUINDO 
+		current_state = bat_state.FLY
 
 # FUNCAO PARA A PERSEGUICAO DO MORCEGO NO PLAYER
 func bat_chase(delta : float):
-	if is_bat_chase: 
-		player = Global.playerBody # A VAR PLAYER ASSUME O CONTEUDO DA VAR GLOBAL PLAYERBODY 
-		velocity = position.direction_to(player.position) * 2.5 * speed # EQUACAO QUE IRA FAZER O MORCEGO IR EM DIRECAO AO PLAYER 
-		direction.x = abs(velocity.x) / velocity.x # EQUACAO PARA DECIDIR A DIRECAO DO MORCEGO, SE VELOCITY.X = 1 |1|/1 = 1 VAI PARA A DIREITA, SE VELOCITY.X = -1 |-1|/-1 = -1 VAI PARA A ESQUERDA
-		dive += 1 # DIVE = MERGULHO, DURANTE O TEMPO QUE ELE ESTIVER PERSEGUINDO ELE ADICIONARA ATE ATINGIR UM VALOR ESPECIFICO
-	current_state = bat_state.FLY
+	if can_fly:
+		if is_bat_chase: 
+			player = Global.playerBody # A VAR PLAYER ASSUME O CONTEUDO DA VAR GLOBAL PLAYERBODY 
+			velocity = position.direction_to(player.position) * 2.5 * speed # EQUACAO QUE IRA FAZER O MORCEGO IR EM DIRECAO AO PLAYER 
+			direction.x = abs(velocity.x) / velocity.x # EQUACAO PARA DECIDIR A DIRECAO DO MORCEGO, SE VELOCITY.X = 1 |1|/1 = 1 VAI PARA A DIREITA, SE VELOCITY.X = -1 |-1|/-1 = -1 VAI PARA A ESQUERDA
+			dive += 1 # DIVE = MERGULHO, DURANTE O TEMPO QUE ELE ESTIVER PERSEGUINDO ELE ADICIONARA ATE ATINGIR UM VALOR ESPECIFICO
+		current_state = bat_state.FLY
 	#debugging
 	#print(dive)
 
