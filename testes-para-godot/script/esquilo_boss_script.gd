@@ -23,19 +23,13 @@ enum states {moving, idle, falling, waiting, fling, shooting, start_shooting, hi
 var state = states.waiting
  
 var direction = -1
-var player 
-var player_position
-var distancia_soco = 30
 var destino_soco = Vector2.ZERO
-	
-	
 	
 
 func _ready() -> void:
 	pass
 			
 func _process(float):
-	print(state)
 	#Sempre o raycast mirando no player, mas talvez não seja necessario no final, mas, ajuda!
 	var centrodoplayer = get_node("/root/mapa_principal/boneco")
 	$mira_player.target_position = centrodoplayer.global_position - global_position
@@ -58,7 +52,7 @@ func _physics_process(delta):
 		states.hit:
 			hit()
 		states.waiting:
-			pass
+			velocity = Vector2.ZERO
 		states.pulo:
 			pulo()
 		states.queda:
@@ -77,18 +71,13 @@ func moving():
 	if $mira_player.target_position.x > 0:
 		var move = Vector2(1, 0)
 		velocity = move.normalized() * 100
+		
 	elif $mira_player.target_position.x < 0:
 		var move = Vector2(-1, 0)
-		velocity = move.normalized() * 400
+		velocity = move.normalized() * 100
+		var timer = await get_tree().create_timer(0.7).timeout
+		state = states.waiting
 		
-		
-		
-		
-		
-	if direction < 0:
-		if esquilo.position.x >= 896:
-			velocity.x = 0
-			state = states.fling
 	
 	
 func falling():
@@ -164,4 +153,12 @@ func queda():
 	velocity.x = -queda_inicio * 13
 	if is_on_floor():
 		velocity.x = 0
-		state = states.idle
+		state = states.waiting
+		await get_tree().create_timer(2.5).timeout
+		state = states.moving
+
+
+func _on_area_detecção_1_body_entered(body: Node2D) -> void:
+	await get_tree().create_timer(1.0).timeout
+	var tween = create_tween()
+	tween.tween_property($grab, "target_position", $mira_player.target_position, 1.0)

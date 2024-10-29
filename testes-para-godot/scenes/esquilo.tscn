@@ -152,6 +152,8 @@ shape = SubResource("CircleShape2D_pogq7")
 wait_time = 5.0
 one_shot = true
 
+[node name="grab" type="RayCast2D" parent="."]
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="finish_turret" to="." method="_on_finish_turret_timeout"]
 [connection signal="timeout" from="timer_de_dano" to="." method="_on_timer_de_dano_timeout"]

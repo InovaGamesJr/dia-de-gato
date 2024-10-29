@@ -22,7 +22,7 @@ func _process(_delta: float) -> void:
 func _physics_process(delta):
 	match state:
 		States.idle:
-			idle(delta)
+			idle()
 		States.running:
 			running()
 		States.jumping:
@@ -33,11 +33,10 @@ func _physics_process(delta):
 			waiting_()
 		States.auto:
 			automatico()
-	if Input.is_action_pressed("dash"):
-		velocity = dashing.normalized() * 100
+			
 	move_and_slide()
 
-func idle(delta):
+func idle():
 	velocity.x = 0
 	animation.play("idle")
 	if Input.get_axis("left", "right"):

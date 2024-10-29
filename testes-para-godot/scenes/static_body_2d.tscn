@@ -3,19 +3,19 @@
 [ext_resource type="Texture2D" uid="uid://djb4txdofsa0l" path="res://tiles/Textures-16.png" id="1_h13ae"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u1w0b"]
-size = Vector2(82, 8)
+size = Vector2(39, 3)
 
-[node name="StaticBody2D" type="StaticBody2D"]
+[node name="plataforma" type="StaticBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_repeat = 2
-position = Vector2(2.98023e-08, -4)
-scale = Vector2(5.13333, 1)
+position = Vector2(-19.75, -1.75)
+scale = Vector2(2.5, 0.357143)
 texture = ExtResource("1_h13ae")
 region_enabled = true
 region_rect = Rect2(48.1086, 208.259, 15.8276, 7.5181)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4)
+position = Vector2(-19.5, -1.5)
 shape = SubResource("RectangleShape2D_u1w0b")
 one_way_collision = true
