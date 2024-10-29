@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 @onready var animation = $"animação_boneco"
 var speed = 140
-const jumping = 200
+const jumping = 300
 const gravity = 800
 enum States {idle, running, jumping, falling, waiting, auto}
 var waiting
@@ -11,9 +11,9 @@ var state = States.idle
 const bulletpath = preload("res://scenes/nuts.tscn")
 var speed_auto : int = 30
 var camera : bool = false
+var dashing = Vector2(1, 0)
 
-
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if camera == true:
 		state = States.auto
 		camera = false
@@ -22,21 +22,22 @@ func _process(delta: float) -> void:
 func _physics_process(delta):
 	match state:
 		States.idle:
-			idle()
+			idle(delta)
 		States.running:
 			running()
 		States.jumping:
 			_jumping()
 		States.falling:
 			falling(delta)
-		waiting:
+		States.waiting:#Como diz, esperando a animação da camera acabar para trocar de estado
 			waiting_()
 		States.auto:
-			automatico(delta)
-			
+			automatico()
+	if Input.is_action_pressed("dash"):
+		velocity = dashing.normalized() * 100
 	move_and_slide()
-	
-func idle():
+
+func idle(delta):
 	velocity.x = 0
 	animation.play("idle")
 	if Input.get_axis("left", "right"):
@@ -45,6 +46,8 @@ func idle():
 		state = States.jumping
 	if not is_on_floor():
 		state = States.falling
+	if Input.is_action_just_pressed("dash"):
+		pass
 	
 func running():
 	var direction = Input.get_axis("left", "right")
@@ -90,12 +93,12 @@ func shotting():
 func raycast():
 	pass
 	
-func automatico(delta):
-	velocity.x = 0
+func automatico():
 	velocity.x = speed_auto
-	print(position.x)
+	$sprites_boneco.play("walking")
 	if position.x >= 807:
-		state = States.idle
+		state = States.waiting
 		
 func waiting_():
 	velocity.x = 0
+	animation.play("idle")

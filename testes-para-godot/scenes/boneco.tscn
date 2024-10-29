@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=3 uid="uid://dwhxr5xmal0lu"]
+[gd_scene load_steps=116 format=3 uid="uid://dwhxr5xmal0lu"]
 
 [ext_resource type="Script" path="res://script/boneco.gd" id="1_nkuau"]
 [ext_resource type="Texture2D" uid="uid://cw8g6rnafw4qo" path="res://personagem/Asset Packs 1-5/Asset Packs 1-4 (final)/Asset Pack-V1/Player Idle/Player Idle 48x48.png" id="2_hneby"]
@@ -701,30 +701,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [1]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("sword_area/sword_collision:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("punch_area/punch_collision:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_m04tm"]
 resource_name = "dash"
@@ -871,18 +847,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("punch_area/punch_collision:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.45),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, true]
-}
 
 [sub_resource type="Animation" id="Animation_pdtfm"]
 resource_name = "roll"
@@ -970,18 +934,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("sword_area/sword_collision:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.118602, 0.247087),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_ce78g"]
@@ -1089,23 +1041,16 @@ _data = {
 "walking": SubResource("Animation_fok4t")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x7dch"]
-size = Vector2(16, 30)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xpf2b"]
-size = Vector2(11, 5)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ua6uy"]
-height = 20.0
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w15dx"]
 radius = 6.0
+height = 12.0
 
 [node name="boneco" type="CharacterBody2D" groups=["boneco"]]
 script = ExtResource("1_nkuau")
 
 [node name="sprites_boneco" type="AnimatedSprite2D" parent="."]
-position = Vector2(13, -12)
+position = Vector2(12, -5)
+scale = Vector2(1, 0.4)
 sprite_frames = SubResource("SpriteFrames_fwyg0")
 animation = &"idle"
 frame = 1
@@ -1117,23 +1062,6 @@ libraries = {
 }
 autoplay = "idle"
 
-[node name="sword_area" type="Area2D" parent="."]
-
-[node name="sword_collision" type="CollisionShape2D" parent="sword_area"]
-position = Vector2(25, -15)
-shape = SubResource("RectangleShape2D_x7dch")
-
-[node name="punch_area" type="Area2D" parent="."]
-
-[node name="punch_collision" type="CollisionShape2D" parent="punch_area"]
-position = Vector2(27.5, -17)
-shape = SubResource("RectangleShape2D_xpf2b")
-
-[node name="colisão_roll" type="CollisionShape2D" parent="."]
-position = Vector2(0, -10)
-shape = SubResource("CapsuleShape2D_ua6uy")
-disabled = true
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -15)
+position = Vector2(0, -6)
 shape = SubResource("CapsuleShape2D_w15dx")

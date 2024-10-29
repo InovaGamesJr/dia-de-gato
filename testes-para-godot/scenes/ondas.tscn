@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://diinc0qndfy5w"]
 
 [ext_resource type="Texture2D" uid="uid://b3ip7xotxlv42" path="res://onda.aseprite" id="1_i76gp"]
-[ext_resource type="Script" path="res://script/ondas.gd" id="1_makaq"]
+[ext_resource type="Script" path="res://script/script_ataque_ondas.gd" id="1_makaq"]
 
 [node name="ondas" type="CharacterBody2D"]
 modulate = Color(0, 0, 0, 1)

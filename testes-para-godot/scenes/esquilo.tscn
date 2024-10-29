@@ -1,23 +1,127 @@
-[gd_scene load_steps=4 format=3 uid="uid://i8njwppn3gil"]
+[gd_scene load_steps=18 format=3 uid="uid://i8njwppn3gil"]
 
-[ext_resource type="Script" path="res://script/esquilo.gd" id="1_ip27w"]
-[ext_resource type="Texture2D" uid="uid://bikm7iggo6tbf" path="res://icon.svg" id="2_mtocg"]
+[ext_resource type="Script" path="res://script/esquilo_boss_script.gd" id="1_ip27w"]
+[ext_resource type="Texture2D" uid="uid://n4b10oneavxo" path="res://Mecha-stone Golem 0.1/PNG sheet/Character_sheet.png" id="2_serf8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwocn"]
+atlas = ExtResource("2_serf8")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udwh3"]
+atlas = ExtResource("2_serf8")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcvys"]
+atlas = ExtResource("2_serf8")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0emf"]
+atlas = ExtResource("2_serf8")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4k4w"]
+atlas = ExtResource("2_serf8")
+region = Rect2(0, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ut4w"]
+atlas = ExtResource("2_serf8")
+region = Rect2(100, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eon8o"]
+atlas = ExtResource("2_serf8")
+region = Rect2(200, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nefa7"]
+atlas = ExtResource("2_serf8")
+region = Rect2(300, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1gyhk"]
+atlas = ExtResource("2_serf8")
+region = Rect2(400, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jsall"]
+atlas = ExtResource("2_serf8")
+region = Rect2(500, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o14vs"]
+atlas = ExtResource("2_serf8")
+region = Rect2(600, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ryjb"]
+atlas = ExtResource("2_serf8")
+region = Rect2(700, 100, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4yhvh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwocn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udwh3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lcvys")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b0emf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4k4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ut4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eon8o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nefa7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1gyhk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jsall")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o14vs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ryjb")
+}],
+"loop": true,
+"name": &"moving",
+"speed": 6.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gor7f"]
-radius = 32.0
-height = 64.0
+radius = 24.0
+height = 52.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pogq7"]
+radius = 25.02
 
 [node name="Esquilo" type="CharacterBody2D"]
 script = ExtResource("1_ip27w")
 
-[node name="shoot" type="Timer" parent="."]
-wait_time = 0.3
-autostart = true
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -32)
+scale = Vector2(1.12, 1.12)
+sprite_frames = SubResource("SpriteFrames_4yhvh")
+animation = &"moving"
+autoplay = "idle"
+frame = 6
+frame_progress = 0.808233
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(2.38419e-07, -32)
-scale = Vector2(0.522, 0.5)
-texture = ExtResource("2_mtocg")
+[node name="Colisão esquilo" type="CollisionShape2D" parent="."]
+position = Vector2(0, -33)
+shape = SubResource("CapsuleShape2D_gor7f")
 
 [node name="Colide_Left" type="RayCast2D" parent="."]
 position = Vector2(-8, -32)
@@ -27,14 +131,27 @@ target_position = Vector2(-64, 0)
 position = Vector2(0, -32)
 target_position = Vector2(64, 0)
 
-[node name="Colisão esquilo" type="CollisionShape2D" parent="."]
-position = Vector2(0, -32)
-shape = SubResource("CapsuleShape2D_gor7f")
-
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(0, 17)
-
 [node name="mira_player" type="RayCast2D" parent="."]
 target_position = Vector2(0, 60)
 
-[connection signal="timeout" from="shoot" to="." method="_on_shooting_timeout"]
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.45
+
+[node name="finish_turret" type="Timer" parent="."]
+one_shot = true
+
+[node name="area_para_dano" type="Area2D" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="colisao_dano" type="CollisionShape2D" parent="area_para_dano"]
+position = Vector2(0, -33)
+shape = SubResource("CircleShape2D_pogq7")
+
+[node name="timer_de_dano" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="finish_turret" to="." method="_on_finish_turret_timeout"]
+[connection signal="timeout" from="timer_de_dano" to="." method="_on_timer_de_dano_timeout"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ckbpixulno8v0"]
 
-[ext_resource type="Script" path="res://script/morcego.gd" id="1_7es3j"]
-[ext_resource type="Texture2D" uid="uid://bikm7iggo6tbf" path="res://icon.svg" id="2_qhyc0"]
+[ext_resource type="Script" path="res://script/morcego_boss_script.gd" id="1_7es3j"]
+[ext_resource type="Texture2D" uid="uid://dcsnfodluwla5" path="res://icon.svg" id="2_qhyc0"]
 
 [node name="Morcego" type="CharacterBody2D"]
 scale = Vector2(1.5, 1.5)
@@ -19,4 +19,9 @@ wait_time = 0.6
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 0)
 
+[node name="timer para chase" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
 [connection signal="timeout" from="timer para onda" to="." method="_on_timer_para_onda_timeout"]
+[connection signal="timeout" from="timer para chase" to="." method="_on_timer_para_chase_timeout"]

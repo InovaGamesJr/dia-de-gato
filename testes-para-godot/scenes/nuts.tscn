@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://cw1162bux23ef"]
 
-[ext_resource type="Texture2D" uid="uid://bikm7iggo6tbf" path="res://icon.svg" id="1_a3fj2"]
-[ext_resource type="Script" path="res://script/nuts.gd" id="1_j6vbg"]
+[ext_resource type="Texture2D" uid="uid://dcsnfodluwla5" path="res://icon.svg" id="1_a3fj2"]
+[ext_resource type="Script" path="res://script/bala_nozes_script.gd" id="1_j6vbg"]
 [ext_resource type="Texture2D" uid="uid://ckpayq2h1iaei" path="res://tiles/spritesheet.png" id="3_12wky"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gvn3p"]
