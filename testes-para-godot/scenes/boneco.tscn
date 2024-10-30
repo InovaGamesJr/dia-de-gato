@@ -1043,14 +1043,13 @@ _data = {
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w15dx"]
 radius = 6.0
-height = 12.0
+height = 26.0
 
 [node name="boneco" type="CharacterBody2D" groups=["boneco"]]
 script = ExtResource("1_nkuau")
 
 [node name="sprites_boneco" type="AnimatedSprite2D" parent="."]
-position = Vector2(12, -5)
-scale = Vector2(1, 0.4)
+position = Vector2(13, -12)
 sprite_frames = SubResource("SpriteFrames_fwyg0")
 animation = &"idle"
 frame = 1
@@ -1063,5 +1062,5 @@ libraries = {
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -6)
+position = Vector2(0, -13)
 shape = SubResource("CapsuleShape2D_w15dx")

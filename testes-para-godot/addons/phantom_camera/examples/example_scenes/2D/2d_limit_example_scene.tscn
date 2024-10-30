@@ -264,7 +264,7 @@ debug_color = Color(0, 0.6, 0.701961, 0.0313726)
 
 [node name="RoomCentrePhantomCamera2D" type="Node2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(1474, -149)
+position = Vector2(1431.33, -149)
 script = ExtResource("4_4b648")
 follow_mode = 2
 zoom = Vector2(1.5, 1.5)

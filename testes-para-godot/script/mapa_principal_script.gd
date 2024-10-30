@@ -21,7 +21,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func zoom_to_boss(_body):
-
+	#Toda a parte de camera na chegada do boss, pode ser mudada!!!
 	$Area2D.queue_free()
 	var player = $boneco
 	player.state = player.States.waiting

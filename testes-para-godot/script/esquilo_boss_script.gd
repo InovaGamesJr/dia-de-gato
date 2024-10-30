@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
-
+@onready var centrodoplayer = $"../boneco/Marker2D"
 @onready var player_cast : RayCast2D = $mira_player
 @onready var esquilo : CharacterBody2D = $"."
-@onready var area_dano : Area2D = $area_para_dano
+@onready var boneco = $"../boneco"
 
 #Váriaveis para o inicio do jogo!!!
 var pulo_inicio : int = 300
@@ -31,7 +31,6 @@ func _ready() -> void:
 			
 func _process(float):
 	#Sempre o raycast mirando no player, mas talvez não seja necessario no final, mas, ajuda!
-	var centrodoplayer = get_node("/root/mapa_principal/boneco")
 	$mira_player.target_position = centrodoplayer.global_position - global_position
 	
 	match state:
@@ -114,17 +113,7 @@ func shooting():
 	nozes.velocit = player_cast.target_position
 
 func hit():
-	if not is_on_floor():
-		velocity.y += gravity
-	if is_on_floor():
-		area_dano.monitoring = true
-		area_dano.monitorable = true
-
-
-
-
-
-
+	pass
 
 func _on_timer_timeout() -> void:
 	shooting()
@@ -136,12 +125,7 @@ func _on_finish_turret_timeout() -> void:
 	$timer_de_dano.start()
 	state = states.hit
 
-func _on_timer_de_dano_timeout() -> void:
-	area_dano.monitoring = false
-	area_dano.monitorable = false
-	state = states.moving
 	
-
 #Funções apenas para iniciar o jogo!!!!
 func pulo():
 	velocity.y = -pulo_inicio
@@ -157,8 +141,29 @@ func queda():
 		await get_tree().create_timer(2.5).timeout
 		state = states.moving
 
+func interpolate(tamanho, duration):
+	var tween_offset = create_tween()
+	var tween_rect = create_tween()
+	
+	tween_offset.tween_property($grab_node/grab_sprite, "offset", Vector2(0, tamanho / 2.0), duration)
+	tween_rect.tween_property($grab_node/grab_sprite, "region_rect", Rect2(0, 0, 16, tamanho), duration)
 
+func raycast(target, duration):
+	
+	var tween_target = create_tween()
+	var target_position = centrodoplayer.global_position - self.global_position
+	tween_target.tween_property($grab_node/grab, "target_position", target, duration)
+	
+	
+	
 func _on_area_detecção_1_body_entered(body: Node2D) -> void:
-	await get_tree().create_timer(1.0).timeout
-	var tween = create_tween()
-	tween.tween_property($grab, "target_position", $mira_player.target_position, 1.0)
+	if body.name == "boneco":
+		await get_tree().create_timer(1.0).timeout
+		interpolate(210, 1.0)
+		var target = boneco.global_position - self.global_position
+		raycast(target, 1.0)
+
+func _on_area_detecção_1_body_exited(body: Node2D) -> void:
+	if body.name == "boneco":
+		interpolate(0, 1.0)
+		raycast(Vector2.ZERO, 1.0)
