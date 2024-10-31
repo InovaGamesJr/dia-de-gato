@@ -1,9 +1,12 @@
 extends CharacterBody2D
 
-@onready var centrodoplayer = $"../boneco/Marker2D"
+@onready var centrodoplayer = get_parent().get_node("boneco/Marker2D")
 @onready var player_cast : RayCast2D = $mira_player
 @onready var esquilo : CharacterBody2D = $"."
 @onready var boneco = $"../boneco"
+
+var positionx : float 
+var positiony : float 
 
 #Váriaveis para o inicio do jogo!!!
 var pulo_inicio : int = 300
@@ -33,10 +36,12 @@ func _process(float):
 	#Sempre o raycast mirando no player, mas talvez não seja necessario no final, mas, ajuda!
 	$mira_player.target_position = centrodoplayer.global_position - global_position
 	
-	match state:
-		states.start_shooting:
-			start_shooting()
-		
+	#Posições para o raycast de grab!
+	
+	positionx = centrodoplayer.get_parent().position.x - self.position.x
+	positiony = centrodoplayer.get_parent().position.y - (self.position.y - 13)
+
+
 func _physics_process(delta):
 	
 	match state:
@@ -148,22 +153,26 @@ func interpolate(tamanho, duration):
 	tween_offset.tween_property($grab_node/grab_sprite, "offset", Vector2(0, tamanho / 2.0), duration)
 	tween_rect.tween_property($grab_node/grab_sprite, "region_rect", Rect2(0, 0, 16, tamanho), duration)
 
-func raycast(target, duration):
+func raycast(targetx, targety, duration):
 	
 	var tween_target = create_tween()
 	var target_position = centrodoplayer.global_position - self.global_position
-	tween_target.tween_property($grab_node/grab, "target_position", target, duration)
+	tween_target.tween_property($grab_node/grab, "target_position", Vector2(targetx, targety), duration)
 	
 	
 	
 func _on_area_detecção_1_body_entered(body: Node2D) -> void:
 	if body.name == "boneco":
-		await get_tree().create_timer(1.0).timeout
-		interpolate(210, 1.0)
-		var target = boneco.global_position - self.global_position
-		raycast(target, 1.0)
+		$grab_node/timer_grab.start()
 
 func _on_area_detecção_1_body_exited(body: Node2D) -> void:
 	if body.name == "boneco":
-		interpolate(0, 1.0)
-		raycast(Vector2.ZERO, 1.0)
+		$grab_node/timer_grab.stop()
+	
+
+func _on_timer_grab_timeout() -> void:
+	interpolate(positionx, 1.0)
+	raycast(positionx, positiony, 1.0)
+	await get_tree().create_timer(1.2).timeout
+	interpolate(0, 0.5)
+	raycast(0, 0, 0.5)

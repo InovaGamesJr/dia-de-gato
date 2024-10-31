@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 @onready var animation = $"animação_boneco"
 var speed = 140
-const jumping = 300
+const jumping = 350
 const gravity = 800
 enum States {idle, running, jumping, falling, waiting, auto}
 var waiting

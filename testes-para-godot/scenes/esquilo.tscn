@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://script/esquilo_boss_script.gd" id="1_ip27w"]
 [ext_resource type="Texture2D" uid="uid://n4b10oneavxo" path="res://Mecha-stone Golem 0.1/PNG sheet/Character_sheet.png" id="2_serf8"]
 [ext_resource type="Texture2D" uid="uid://dqm62npxwj1t1" path="res://corrente2.aseprite" id="3_0swcs"]
-[ext_resource type="Script" path="res://script/grab.gd" id="3_12n0m"]
+[ext_resource type="Script" path="res://script/grab_sprite.gd" id="4_if0ph"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pwocn"]
 atlas = ExtResource("2_serf8")
@@ -132,20 +132,23 @@ wait_time = 0.45
 one_shot = true
 
 [node name="grab_node" type="Node2D" parent="."]
-position = Vector2(0, -33)
-rotation = 0.00320227
-script = ExtResource("3_12n0m")
+position = Vector2(0, -26)
 
 [node name="grab" type="RayCast2D" parent="grab_node"]
 position = Vector2(1.234e-08, 3.8147e-06)
-target_position = Vector2(0, 0)
 
 [node name="grab_sprite" type="Sprite2D" parent="grab_node"]
 texture_repeat = 2
-rotation = -1.5708
+rotation = -3.14159
 texture = ExtResource("3_0swcs")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 0)
+script = ExtResource("4_if0ph")
+
+[node name="timer_grab" type="Timer" parent="grab_node"]
+wait_time = 0.6
+one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="finish_turret" to="." method="_on_finish_turret_timeout"]
+[connection signal="timeout" from="grab_node/timer_grab" to="." method="_on_timer_grab_timeout"]
