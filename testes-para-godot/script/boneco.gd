@@ -29,8 +29,6 @@ func _physics_process(delta):
 			_jumping()
 		States.falling:
 			falling(delta)
-		States.waiting:#Como diz, esperando a animação da camera acabar para trocar de estado
-			waiting_()
 		States.auto:
 			automatico()
 			
@@ -88,7 +86,7 @@ func falling(_delta):
 
 func shotting():
 	pass
-
+ 
 func raycast():
 	pass
 	
@@ -98,6 +96,12 @@ func automatico():
 	if position.x >= 807:
 		state = States.waiting
 		
-func waiting_():
-	velocity.x = 0
-	animation.play("idle")
+func puxao():
+	velocity = Vector2.ZERO
+
+func _on_area_puxao_body_entered(body: Node2D) -> void:
+	if body.name == "boneco":
+		await get_tree().create_timer(0.2).timeout
+		var esquilo = get_parent().get_node("Boss_Esquilo")
+		var tween = create_tween()
+		tween.tween_property(self, "position", esquilo.position + Vector2(0, -16), 0.67)

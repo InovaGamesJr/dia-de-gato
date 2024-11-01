@@ -1,9 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://i8njwppn3gil"]
+[gd_scene load_steps=20 format=3 uid="uid://i8njwppn3gil"]
 
 [ext_resource type="Script" path="res://script/esquilo_boss_script.gd" id="1_ip27w"]
 [ext_resource type="Texture2D" uid="uid://n4b10oneavxo" path="res://Mecha-stone Golem 0.1/PNG sheet/Character_sheet.png" id="2_serf8"]
 [ext_resource type="Texture2D" uid="uid://dqm62npxwj1t1" path="res://corrente2.aseprite" id="3_0swcs"]
-[ext_resource type="Script" path="res://script/grab_sprite.gd" id="4_if0ph"]
+[ext_resource type="Script" path="res://script/grab_node.gd" id="3_vm702"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fj6lj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pwocn"]
 atlas = ExtResource("2_serf8")
@@ -109,6 +111,14 @@ height = 52.0
 [node name="Esquilo" type="CharacterBody2D"]
 script = ExtResource("1_ip27w")
 
+[node name="area_puxao" type="Area2D" parent="."]
+position = Vector2(0, -26)
+rotation = -1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area_puxao"]
+position = Vector2(-4.76837e-07, 0)
+shape = SubResource("CircleShape2D_fj6lj")
+
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -23)
 scale = Vector2(1.12, 1.12)
@@ -131,19 +141,19 @@ wait_time = 0.45
 [node name="finish_turret" type="Timer" parent="."]
 one_shot = true
 
+[node name="grab" type="RayCast2D" parent="."]
+position = Vector2(1.234e-08, -26)
+
 [node name="grab_node" type="Node2D" parent="."]
 position = Vector2(0, -26)
-
-[node name="grab" type="RayCast2D" parent="grab_node"]
-position = Vector2(1.234e-08, 3.8147e-06)
+script = ExtResource("3_vm702")
 
 [node name="grab_sprite" type="Sprite2D" parent="grab_node"]
 texture_repeat = 2
-rotation = -3.14159
+rotation = -1.5708
 texture = ExtResource("3_0swcs")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 0)
-script = ExtResource("4_if0ph")
 
 [node name="timer_grab" type="Timer" parent="grab_node"]
 wait_time = 0.6
@@ -152,3 +162,4 @@ one_shot = true
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="finish_turret" to="." method="_on_finish_turret_timeout"]
 [connection signal="timeout" from="grab_node/timer_grab" to="." method="_on_timer_grab_timeout"]
+[connection signal="timeout" from="grab_node/timer_grab" to="grab_node" method="_on_timer_grab_timeout"]

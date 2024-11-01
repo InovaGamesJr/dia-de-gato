@@ -481,7 +481,7 @@ transition = 0
 ease = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yw5ke"]
-size = Vector2(46.375, 50.5625)
+size = Vector2(36.5938, 45.2813)
 
 [node name="mapa_principal" type="Node2D"]
 script = ExtResource("1_egasq")
@@ -494,10 +494,9 @@ layer_0/tile_data = PackedInt32Array(2359296, 131074, 29, 2424832, 131074, 30, 2
 [node name="Boss_Esquilo" parent="." instance=ExtResource("4_j60ut")]
 light_mask = 32
 visibility_layer = 32
-position = Vector2(931, 575)
+position = Vector2(1161, 462)
 
 [node name="Pcam_boss" type="Node2D" parent="Boss_Esquilo" node_paths=PackedStringArray("follow_target")]
-position = Vector2(0, -53)
 script = ExtResource("5_xstlf")
 priority = 10
 follow_mode = 2
@@ -511,7 +510,7 @@ limit_bottom = 630
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1
 visible = false
-position = Vector2(1044, 522)
+position = Vector2(688, 479)
 zoom = Vector2(3, 3)
 process_callback = 0
 limit_bottom = 630
@@ -522,10 +521,9 @@ process_physics_priority = 300
 script = ExtResource("2_lm0nj")
 
 [node name="boneco" parent="." instance=ExtResource("2_ie7b0")]
-position = Vector2(1044, 576)
+position = Vector2(688, 479)
 
 [node name="Pcam_boneco" type="Node2D" parent="boneco" node_paths=PackedStringArray("follow_target")]
-position = Vector2(0, -54)
 script = ExtResource("5_xstlf")
 priority = 15
 follow_mode = 2
@@ -543,16 +541,22 @@ position = Vector2(1, -14)
 position = Vector2(729, 540)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(149, -166)
+position = Vector2(8, 14)
 shape = SubResource("RectangleShape2D_1xhui")
 
 [node name="plataformas" type="Node" parent="."]
 
 [node name="plataforma 1" parent="plataformas" instance=ExtResource("5_ukj7c")]
-position = Vector2(1136, 509)
+position = Vector2(1134, 488)
 
 [node name="plataforma 2" parent="plataformas" instance=ExtResource("5_ukj7c")]
-position = Vector2(712, 509)
+position = Vector2(711, 490)
+
+[node name="plataforma" parent="plataformas" instance=ExtResource("5_ukj7c")]
+position = Vector2(1135, 538)
+
+[node name="plataforma2" parent="plataformas" instance=ExtResource("5_ukj7c")]
+position = Vector2(711, 538)
 
 [node name="camera_meio" type="Node" parent="."]
 
@@ -570,7 +574,7 @@ limit_bottom = 630
 [node name="detecção grab" type="Node" parent="."]
 
 [node name="area_detecção 1" type="Area2D" parent="detecção grab"]
-position = Vector2(679, 510)
+position = Vector2(676, 489)
 
 [node name="colisaoarea2" type="CollisionShape2D" parent="detecção grab/area_detecção 1"]
 position = Vector2(17.8125, -30.7188)
@@ -580,6 +584,15 @@ shape = SubResource("RectangleShape2D_yw5ke")
 position = Vector2(433.375, -30.4375)
 shape = SubResource("RectangleShape2D_yw5ke")
 
+[node name="colisaoarea4" type="CollisionShape2D" parent="detecção grab/area_detecção 1"]
+position = Vector2(17, 20)
+shape = SubResource("RectangleShape2D_yw5ke")
+
+[node name="colisaoarea5" type="CollisionShape2D" parent="detecção grab/area_detecção 1"]
+position = Vector2(437, 22)
+shape = SubResource("RectangleShape2D_yw5ke")
+
+[connection signal="body_entered" from="Boss_Esquilo/area_puxao" to="boneco" method="_on_area_puxao_body_entered"]
 [connection signal="body_entered" from="detecção grab/area_detecção 1" to="Boss_Esquilo" method="_on_area_detecção_1_body_entered"]
 [connection signal="body_entered" from="detecção grab/area_detecção 1" to="Boss_Esquilo/grab_node/grab_sprite" method="_on_area_detecção_1_body_entered"]
 [connection signal="body_exited" from="detecção grab/area_detecção 1" to="Boss_Esquilo" method="_on_area_detecção_1_body_exited"]

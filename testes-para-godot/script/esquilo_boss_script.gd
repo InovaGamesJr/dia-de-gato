@@ -7,6 +7,7 @@ extends CharacterBody2D
 
 var positionx : float 
 var positiony : float 
+var areaposition = Vector2(0, 0)
 
 #Váriaveis para o inicio do jogo!!!
 var pulo_inicio : int = 300
@@ -22,7 +23,7 @@ var gravity : int = 20
 var bulletpath = preload("res://scenes/nuts.tscn")
 
 #Aqui são os estados do esquilo, sendo a principal waiting, que só deixa ele parado mesmo
-enum states {moving, idle, falling, waiting, fling, shooting, start_shooting, hit, pulo, queda}
+enum states {moving, idle, falling, waiting, fling, shooting, start_shooting, hit, pulo, grab, queda}
 var state = states.waiting
  
 var direction = -1
@@ -61,8 +62,6 @@ func _physics_process(delta):
 			pulo()
 		states.queda:
 			queda()
-		
-
 	move_and_slide()
 
 func idle():
@@ -132,10 +131,6 @@ func _on_finish_turret_timeout() -> void:
 
 	
 #Funções apenas para iniciar o jogo!!!!
-func pulo():
-	velocity.y = -pulo_inicio
-	if not is_on_floor():
-		state = states.queda
 		
 func queda():
 	velocity.y += queda_inicio
@@ -144,8 +139,13 @@ func queda():
 		velocity.x = 0
 		state = states.waiting
 		await get_tree().create_timer(2.5).timeout
-		state = states.moving
+		state = states.grab
 
+func pulo():
+	velocity.y = -pulo_inicio
+	if not is_on_floor():
+		state = states.queda
+		
 func interpolate(tamanho, duration):
 	var tween_offset = create_tween()
 	var tween_rect = create_tween()
@@ -156,23 +156,28 @@ func interpolate(tamanho, duration):
 func raycast(targetx, targety, duration):
 	
 	var tween_target = create_tween()
-	var target_position = centrodoplayer.global_position - self.global_position
-	tween_target.tween_property($grab_node/grab, "target_position", Vector2(targetx, targety), duration)
-	
+	tween_target.tween_property($grab, "target_position", Vector2(targetx, targety), duration)
+
+func puxao(areaposition, duration):
+	var tween = create_tween()
+	tween.tween_property($area_puxao, "position", areaposition, duration)
 	
 	
 func _on_area_detecção_1_body_entered(body: Node2D) -> void:
-	if body.name == "boneco":
+	if body.name == "boneco" and state == states.grab:
 		$grab_node/timer_grab.start()
 
 func _on_area_detecção_1_body_exited(body: Node2D) -> void:
-	if body.name == "boneco":
+	if body.name == "boneco" and state == states.grab:
 		$grab_node/timer_grab.stop()
 	
 
 func _on_timer_grab_timeout() -> void:
+	areaposition = centrodoplayer.global_position - global_position
 	interpolate(positionx, 1.0)
 	raycast(positionx, positiony, 1.0)
+	puxao(areaposition, 1.0)
 	await get_tree().create_timer(1.2).timeout
-	interpolate(0, 0.5)
-	raycast(0, 0, 0.5)
+	puxao(Vector2(0, -26), 0.7)
+	interpolate(0, 0.7)
+	raycast(0, 0, 0.7)
