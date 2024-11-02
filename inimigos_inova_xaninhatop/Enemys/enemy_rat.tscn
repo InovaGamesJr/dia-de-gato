@@ -50,7 +50,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0jubs"]
 size = Vector2(12, 12)
 
-[node name="Enemy_Rat" type="CharacterBody2D" groups=["Enemy_rat"]]
+[node name="Enemy_Rat" type="CharacterBody2D" groups=["Enemy", "Enemy_rat"]]
 collision_layer = 4
 script = ExtResource("1_15hp6")
 

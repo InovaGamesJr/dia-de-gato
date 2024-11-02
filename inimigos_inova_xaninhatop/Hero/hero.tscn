@@ -15,6 +15,6 @@ script = ExtResource("1_fttlo")
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_2cftc")
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="HitBox" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_4whll")
 debug_color = Color(0.375106, 0.611599, 0.168163, 0.42)

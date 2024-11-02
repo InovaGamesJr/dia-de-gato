@@ -9,10 +9,9 @@ var player : CharacterBody2D
 enum bat_state { 
 	FLY, 
 	SLEEP,
-	SCREAM,
 	DEATH, }
 var current_state : bat_state
-var speed : int = 50
+var speed : int = 70
 var dive : int = 0
 var direction  : Vector2
 var is_bat_chase : bool
@@ -60,7 +59,7 @@ func bat_chase(delta : float):
 	if can_fly:
 		if is_bat_chase: 
 			player = Global.playerBody # A VAR PLAYER ASSUME O CONTEUDO DA VAR GLOBAL PLAYERBODY 
-			velocity = position.direction_to(player.position) * 2.5 * speed # EQUACAO QUE IRA FAZER O MORCEGO IR EM DIRECAO AO PLAYER 
+			velocity = position.direction_to(player.position) * 1.5 * speed # EQUACAO QUE IRA FAZER O MORCEGO IR EM DIRECAO AO PLAYER 
 			direction.x = abs(velocity.x) / velocity.x # EQUACAO PARA DECIDIR A DIRECAO DO MORCEGO, SE VELOCITY.X = 1 |1|/1 = 1 VAI PARA A DIREITA, SE VELOCITY.X = -1 |-1|/-1 = -1 VAI PARA A ESQUERDA
 			dive += 1 # DIVE = MERGULHO, DURANTE O TEMPO QUE ELE ESTIVER PERSEGUINDO ELE ADICIONARA ATE ATINGIR UM VALOR ESPECIFICO
 		current_state = bat_state.FLY
@@ -90,12 +89,10 @@ func handle_animation_states(delta : float):
 				bat_vision.scale.x = abs(bat_vision.scale.x) # ESPELHA A COLISSAO PARA A DIREITA
 		bat_state.SLEEP: 
 			bat_animations.play("Sleep")
-		bat_state.SCREAM:
-			pass
 		bat_state.DEATH:
 			pass
 
-						   # TIMERS:
+						   # TIMERS:    						
 
 # FUNCAO DO TIMER DA PERSEGUICAO
 func _on_chase_timer_timeout():

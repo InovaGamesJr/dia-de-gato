@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bkjeldty40alr"]
+[gd_scene load_steps=12 format=3 uid="uid://bkjeldty40alr"]
 
 [ext_resource type="Script" path="res://Main/camera_2d.gd" id="1_bhjvv"]
 [ext_resource type="Texture2D" uid="uid://dwptxt1mln5bg" path="res://Sprite/icon.svg" id="1_lsc0s"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Main/alarm.gd" id="3_6no7y"]
 [ext_resource type="PackedScene" uid="uid://dwok6jk07mqp5" path="res://Enemys/enemy_rat.tscn" id="4_g3u5l"]
 [ext_resource type="PackedScene" uid="uid://bd7waua8am21s" path="res://Enemys/enemy_bat.tscn" id="5_ad66m"]
+[ext_resource type="PackedScene" uid="uid://c6rnloufggj2h" path="res://Enemys/enemy_squirrel.tscn" id="8_0lha7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5635v"]
 texture = ExtResource("1_lsc0s")
@@ -134,5 +135,8 @@ collision_mask = 9
 
 [node name="Enemy_bat2" parent="Enemys" instance=ExtResource("5_ad66m")]
 position = Vector2(-112, -152)
+
+[node name="Enemy_Squirell" parent="." instance=ExtResource("8_0lha7")]
+position = Vector2(54, -20)
 
 [connection signal="body_entered" from="Awaken_Bats" to="Awaken_Bats/Alarm" method="_on_awaken_bats_body_entered"]

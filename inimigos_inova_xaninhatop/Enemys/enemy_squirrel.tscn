@@ -1,0 +1,101 @@
+[gd_scene load_steps=11 format=3 uid="uid://c6rnloufggj2h"]
+
+[ext_resource type="Script" path="res://Enemys/enemy_squirrel.gd" id="1_7hpad"]
+[ext_resource type="Texture2D" uid="uid://dwptxt1mln5bg" path="res://Sprite/icon.svg" id="1_8tuyr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qddso"]
+atlas = ExtResource("1_8tuyr")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8g7op"]
+atlas = ExtResource("1_8tuyr")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gdhq"]
+atlas = ExtResource("1_8tuyr")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcuhq"]
+atlas = ExtResource("1_8tuyr")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2o70s"]
+atlas = ExtResource("1_8tuyr")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e8hhh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qddso")
+}],
+"loop": true,
+"name": &"Chase",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8g7op")
+}],
+"loop": true,
+"name": &"Climb_Tree",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8gdhq")
+}],
+"loop": true,
+"name": &"Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bcuhq")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2o70s")
+}],
+"loop": true,
+"name": &"Shoot_Nuts",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gkryt"]
+size = Vector2(36, 36)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r5ukr"]
+radius = 150.0
+
+[node name="Enemy_Squirrel" type="CharacterBody2D" node_paths=PackedStringArray("enemy_squirrel", "squirrel_animations") groups=["Enemy", "Enemy_Squirrel"]]
+scale = Vector2(0.5, 0.5)
+collision_layer = 4
+script = ExtResource("1_7hpad")
+enemy_squirrel = NodePath(".")
+squirrel_animations = NodePath("Squirrel_Animations")
+
+[node name="Squirrel_Animations" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_e8hhh")
+animation = &"Chase"
+autoplay = "Idle"
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gkryt")
+debug_color = Color(0.73723, 0.363137, 0.0606749, 0.42)
+
+[node name="Attack_Area" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="Attack_Collision" type="CollisionShape2D" parent="Attack_Area"]
+shape = SubResource("CircleShape2D_r5ukr")
+debug_color = Color(0.892269, 0.345346, 0.114556, 0.42)
+
+[connection signal="body_entered" from="Attack_Area" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="Attack_Area" to="." method="_on_attack_area_body_exited"]

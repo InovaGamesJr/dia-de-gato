@@ -41,8 +41,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0jubs"]
 size = Vector2(12, 12)
 
-[node name="Enemy_bat" type="CharacterBody2D" groups=["Enemy_Bat"]]
-collision_layer = 8
+[node name="Enemy_bat" type="CharacterBody2D" groups=["Enemy", "Enemy_Bat"]]
+collision_layer = 12
 collision_mask = 8
 wall_min_slide_angle = 0.0
 script = ExtResource("1_awfov")
@@ -60,11 +60,12 @@ debug_color = Color(0.999547, 0, 0.109503, 0.42)
 
 [node name="VisionArea" type="Area2D" parent="."]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionArea"]
-scale = Vector2(0.666, 0.688)
-polygon = PackedVector2Array(8, 0, 79.5796, 0, 73.5736, 11.6279, 67.5676, 23.2558, 58.5586, 34.8837, 46.5465, 43.6046, 31.5315, 52.3256, 16.5165, 58.1395, -1.5015, 62.5, -1, 6)
+position = Vector2(2, 0.509764)
+scale = Vector2(0.89112, 0.967733)
+polygon = PackedVector2Array(4.48873, -2.51348e-07, 114.114, 0, 102.102, 18.8953, 87.0871, 36.3372, 69.0691, 55.2326, 49.5495, 69.7674, 28.5285, 81.3953, -1.21667, 88.6212, -2.24437, 6.32538)
 
 [node name="Chase_Timer" type="Timer" parent="."]
 wait_time = 2.0

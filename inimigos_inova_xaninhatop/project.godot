@@ -29,6 +29,8 @@ window/size/always_on_top=true
 Player=""
 Enemy_Bat=""
 Enemy_rat=""
+Enemy=""
+Enemy_Squirrel=""
 
 [input]
 
