@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://script/mapa_morcego_script.gd" id="1_cvsok"]
 [ext_resource type="Texture2D" uid="uid://djb4txdofsa0l" path="res://tiles/Textures-16.png" id="1_msnue"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_ht744"]
-[ext_resource type="PackedScene" uid="uid://dwhxr5xmal0lu" path="res://scenes/boneco.tscn" id="2_l5dp4"]
+[ext_resource type="PackedScene" uid="uid://dwhxr5xmal0lu" path="res://scenes/gato.tscn" id="2_l5dp4"]
 [ext_resource type="PackedScene" uid="uid://ckbpixulno8v0" path="res://scenes/morcego.tscn" id="3_aoqdr"]
 [ext_resource type="Texture2D" uid="uid://dcsnfodluwla5" path="res://icon.svg" id="5_s0hvq"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="7_u1722"]

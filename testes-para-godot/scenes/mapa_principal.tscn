@@ -2,12 +2,18 @@
 
 [ext_resource type="Script" path="res://script/mapa_principal_script.gd" id="1_egasq"]
 [ext_resource type="Texture2D" uid="uid://djb4txdofsa0l" path="res://tiles/Textures-16.png" id="1_w5pep"]
-[ext_resource type="PackedScene" uid="uid://dwhxr5xmal0lu" path="res://scenes/boneco.tscn" id="2_ie7b0"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_lm0nj"]
+[ext_resource type="PackedScene" uid="uid://dwhxr5xmal0lu" path="res://scenes/gato.tscn" id="3_8ce5n"]
 [ext_resource type="PackedScene" uid="uid://i8njwppn3gil" path="res://scenes/esquilo.tscn" id="4_j60ut"]
 [ext_resource type="PackedScene" uid="uid://bkuxvij4kq07f" path="res://scenes/static_body_2d.tscn" id="5_ukj7c"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="5_xstlf"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_10sox"]
+
+[sub_resource type="Resource" id="Resource_43lx2"]
+script = ExtResource("6_10sox")
+duration = 1.0
+transition = 0
+ease = 2
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uxc4r"]
 texture = ExtResource("1_w5pep")
@@ -465,12 +471,6 @@ duration = 1.0
 transition = 0
 ease = 2
 
-[sub_resource type="Resource" id="Resource_43lx2"]
-script = ExtResource("6_10sox")
-duration = 1.0
-transition = 0
-ease = 2
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1xhui"]
 size = Vector2(4, 34)
 
@@ -485,6 +485,32 @@ size = Vector2(36.5938, 45.2813)
 
 [node name="mapa_principal" type="Node2D"]
 script = ExtResource("1_egasq")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+zoom = Vector2(3, 3)
+process_callback = 0
+limit_bottom = 630
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("2_lm0nj")
+
+[node name="gato" parent="." instance=ExtResource("3_8ce5n")]
+
+[node name="Pcam_gato" type="Node2D" parent="gato" node_paths=PackedStringArray("follow_target")]
+script = ExtResource("5_xstlf")
+priority = 15
+follow_mode = 2
+follow_target = NodePath("..")
+zoom = Vector2(3, 3)
+tween_resource = SubResource("Resource_43lx2")
+tween_on_load = false
+draw_limits = true
+limit_bottom = 630
+
+[node name="centro_gato" type="Marker2D" parent="gato"]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_d34tp")
@@ -506,36 +532,6 @@ tween_resource = SubResource("Resource_62v8d")
 tween_on_load = false
 draw_limits = true
 limit_bottom = 630
-
-[node name="Camera2D" type="Camera2D" parent="."]
-physics_interpolation_mode = 1
-visible = false
-position = Vector2(688, 479)
-zoom = Vector2(3, 3)
-process_callback = 0
-limit_bottom = 630
-
-[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
-process_priority = 300
-process_physics_priority = 300
-script = ExtResource("2_lm0nj")
-
-[node name="boneco" parent="." instance=ExtResource("2_ie7b0")]
-position = Vector2(688, 479)
-
-[node name="Pcam_boneco" type="Node2D" parent="boneco" node_paths=PackedStringArray("follow_target")]
-script = ExtResource("5_xstlf")
-priority = 15
-follow_mode = 2
-follow_target = NodePath("..")
-zoom = Vector2(3, 3)
-tween_resource = SubResource("Resource_43lx2")
-tween_on_load = false
-draw_limits = true
-limit_bottom = 630
-
-[node name="Marker2D" type="Marker2D" parent="boneco"]
-position = Vector2(1, -14)
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(729, 540)
@@ -592,7 +588,6 @@ shape = SubResource("RectangleShape2D_yw5ke")
 position = Vector2(437, 22)
 shape = SubResource("RectangleShape2D_yw5ke")
 
-[connection signal="body_entered" from="Boss_Esquilo/area_puxao" to="boneco" method="_on_area_puxao_body_entered"]
 [connection signal="body_entered" from="detecção grab/area_detecção 1" to="Boss_Esquilo" method="_on_area_detecção_1_body_entered"]
 [connection signal="body_entered" from="detecção grab/area_detecção 1" to="Boss_Esquilo/grab_node/grab_sprite" method="_on_area_detecção_1_body_entered"]
 [connection signal="body_exited" from="detecção grab/area_detecção 1" to="Boss_Esquilo" method="_on_area_detecção_1_body_exited"]

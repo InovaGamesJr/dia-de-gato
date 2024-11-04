@@ -1,103 +1,79 @@
 extends CharacterBody2D
 
+@onready var animation = $"animações_gato"
 
-@onready var animation = $"animação_boneco"
-var speed = 140
-const jumping = 350
-const gravity = 800
-enum States {idle, running, jumping, falling, waiting, auto}
-var waiting
-var state = States.idle
-const bulletpath = preload("res://scenes/nuts.tscn")
-var speed_auto : int = 30
-var camera : bool = false
-var dashing = Vector2(1, 0)
+var speed_movement : int = 140
+var jumping_force : int = -200
+var gravity_force : int = 800
+enum states {idle, running, jumping, dash}
+var state = states.idle
+var dash_velocity = Vector2(80, 0)
 
 func _process(_delta: float) -> void:
-	if camera == true:
-		state = States.auto
-		camera = false
+	print(state)
 
 
 func _physics_process(delta):
 	match state:
-		States.idle:
-			idle()
-		States.running:
-			running()
-		States.jumping:
-			_jumping()
-		States.falling:
-			falling(delta)
-		States.auto:
-			automatico()
-			
+		states.idle:
+			idle(delta)
+		states.running:
+			running(delta)
+		states.jumping:
+			jumping(delta)
+		states.dash:
+			dash(delta)
+		
 	move_and_slide()
 
-func idle():
-	velocity.x = 0
-	animation.play("idle")
-	if Input.get_axis("left", "right"):
-		state = States.running
-	if Input.is_action_pressed("jump"):
-		state = States.jumping
+func idle(delta):
 	if not is_on_floor():
-		state = States.falling
+		gravity(delta)
+	if is_on_floor():
+		velocity.x = 0
+	elif is_on_floor():
+		animation.play("idle")
+	if Input.get_axis("left", "right"):
+		state = states.running
+	if Input.is_action_just_pressed("jump"):
+		state = states.jumping
 	if Input.is_action_just_pressed("dash"):
-		pass
+		state = states.dash
 	
-func running():
+func running(delta):
 	var direction = Input.get_axis("left", "right")
-	if direction and is_on_floor():
-		velocity.x = direction * speed
+	if direction:
+		velocity.x = direction * speed_movement
 		animation.play("running")
 	else:
 		velocity.x = 0
-	if !Input.get_axis("left", "right"):
-		state = States.idle
-	if Input.is_action_pressed("jump") and is_on_floor():
-		state = States.jumping
-	if not is_on_floor():
-		state = States.falling
+		state = states.idle
+	if Input.is_action_just_pressed("jump"):
+		state = states.jumping
 	
 	if direction == -1:
-		$sprites_boneco.flip_h = true
+		$sprites_gato.flip_h = true
 	elif direction == 1:
-		$sprites_boneco.flip_h = false
+		$sprites_gato.flip_h = false
+	gravity(delta)
 
-
-func _jumping():
-	if Input.is_action_pressed("jump") and is_on_floor():
-		velocity.y = -jumping
+func jumping(delta):
+	if Input.is_action_pressed("jump"):
+		if is_on_floor():
+			velocity.y = jumping_force
 	if not is_on_floor():
-		state = States.falling
-		animation.play("jumping")
-		
-func falling(_delta):
-	velocity.y += gravity * _delta
-	animation.play("falling")
+		gravity(delta)
 	if is_on_floor():
-		state = States.idle
-	var direction = Input.get_axis("left", "right")
-	if direction:
-		velocity.x = direction * speed
-	else:
-		velocity.x = 0
+		state = states.idle
+	if Input.get_axis("left", "right"):
+		state = states.running
 
-func shotting():
-	pass
- 
-func raycast():
-	pass
-	
-func automatico():
-	velocity.x = speed_auto
-	$sprites_boneco.play("walking")
-	if position.x >= 807:
-		state = States.waiting
-		
-func puxao():
-	velocity = Vector2.ZERO
+func dash(delta):
+	if Input.is_action_pressed("dash"):
+		velocity = dash_velocity.normalized() * 300
+		await get_tree().create_timer(0.1).timeout
+		state = states.idle
+
 
 func _on_area_puxao_body_entered(body: Node2D) -> void:
 	if body.name == "boneco":
@@ -105,3 +81,6 @@ func _on_area_puxao_body_entered(body: Node2D) -> void:
 		var esquilo = get_parent().get_node("Boss_Esquilo")
 		var tween = create_tween()
 		tween.tween_property(self, "position", esquilo.position + Vector2(0, -16), 0.67)
+
+func gravity(delta):
+	velocity.y += gravity_force * delta
