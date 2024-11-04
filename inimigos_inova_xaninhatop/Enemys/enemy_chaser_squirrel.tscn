@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://c6rnloufggj2h"]
 
-[ext_resource type="Script" path="res://Enemys/enemy_squirrel.gd" id="1_7hpad"]
+[ext_resource type="Script" path="res://Enemys/enemy_chaser_squirrel.gd" id="1_7hpad"]
 [ext_resource type="Texture2D" uid="uid://dwptxt1mln5bg" path="res://Sprite/icon.svg" id="1_8tuyr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qddso"]
@@ -70,14 +70,13 @@ animations = [{
 size = Vector2(36, 36)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r5ukr"]
-radius = 150.0
+radius = 200.0
 
-[node name="Enemy_Squirrel" type="CharacterBody2D" node_paths=PackedStringArray("enemy_squirrel", "squirrel_animations") groups=["Enemy", "Enemy_Squirrel"]]
+[node name="Enemy_Squirrel_Chaser" type="CharacterBody2D" node_paths=PackedStringArray("enemy_squirrel") groups=["Enemy", "Enemy_Squirrel"]]
 scale = Vector2(0.5, 0.5)
 collision_layer = 4
 script = ExtResource("1_7hpad")
 enemy_squirrel = NodePath(".")
-squirrel_animations = NodePath("Squirrel_Animations")
 
 [node name="Squirrel_Animations" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.3, 0.3)
@@ -95,7 +94,7 @@ collision_mask = 2
 
 [node name="Attack_Collision" type="CollisionShape2D" parent="Attack_Area"]
 shape = SubResource("CircleShape2D_r5ukr")
-debug_color = Color(0.892269, 0.345346, 0.114556, 0.42)
+debug_color = Color(1, 0.129854, 0.0114694, 0.42)
 
 [connection signal="body_entered" from="Attack_Area" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_exited" from="Attack_Area" to="." method="_on_attack_area_body_exited"]

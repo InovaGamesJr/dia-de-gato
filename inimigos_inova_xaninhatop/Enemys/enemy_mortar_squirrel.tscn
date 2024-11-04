@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://crux2u7qaiw4n"]
+
+[ext_resource type="Texture2D" uid="uid://dwptxt1mln5bg" path="res://Sprite/icon.svg" id="1_uf631"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcymj"]
+atlas = ExtResource("1_uf631")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ayxan"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lcymj")
+}],
+"loop": true,
+"name": &"Shoot",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_alsxn"]
+size = Vector2(36, 36)
+
+[node name="Enemy_Mortar_Squirrel" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+
+[node name="Squirrel_Animated" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_ayxan")
+animation = &"Shoot"
+autoplay = "Shoot"
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_alsxn")
+debug_color = Color(0.308823, 0.62689, 0, 0.42)

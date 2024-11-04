@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://wo4wisnr8nov"]
+
+[ext_resource type="Script" path="res://Enemys/enemy_shooter_squirrel.gd" id="1_7tqbd"]
+[ext_resource type="Texture2D" uid="uid://dwptxt1mln5bg" path="res://Sprite/icon.svg" id="2_hr3q6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0b1lb"]
+atlas = ExtResource("2_hr3q6")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_igt2c"]
+atlas = ExtResource("2_hr3q6")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vh02d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0b1lb")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_igt2c")
+}],
+"loop": true,
+"name": &"Shooting ",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bf4qm"]
+size = Vector2(36, 36)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o4xsq"]
+radius = 200.0
+
+[node name="Enemy_Shooter_Squirrel" type="CharacterBody2D" node_paths=PackedStringArray("enemy_squirrel")]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_7tqbd")
+enemy_squirrel = NodePath(".")
+
+[node name="Squirrel_Animated" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_vh02d")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bf4qm")
+debug_color = Color(0.997576, 0, 0.162861, 0.42)
+
+[node name="Attack_Area" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="Attack_Collision" type="CollisionShape2D" parent="Attack_Area"]
+shape = SubResource("CircleShape2D_o4xsq")
+debug_color = Color(1, 0.129412, 0.0117647, 0.419608)
+
+[connection signal="body_entered" from="Attack_Area" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="Attack_Area" to="." method="_on_attack_area_body_exited"]

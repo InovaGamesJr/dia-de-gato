@@ -2,11 +2,9 @@ extends CharacterBody2D
 
 @onready var squirrel_animated: AnimatedSprite2D = $Squirrel_Animations
 @export var enemy_squirrel: CharacterBody2D 
-@export var squirrel_animations: AnimatedSprite2D
 
 enum squirrel_state {
 	Idle,
-	Shoot,
 	Chase,
 	Death,
 	Climb_tree,}
@@ -42,9 +40,6 @@ func squirrel_chase(delta : float):
 	enemy_squirrel.velocity.x += direction * 1.5 * speed * delta
 	enemy_squirrel.velocity.x = clamp(enemy_squirrel.velocity.x, -speed, speed)
 
-func squirrel_shoot(delta : float):
-	pass
-
 # FUNCOES REFERENTES A ENTRADA E SAIDA DA AREA DO ESQUILO
 func _on_attack_area_body_entered(body : CharacterBody2D):
 	if body.is_in_group("Player"):
@@ -65,9 +60,6 @@ func handle_state_and_animations(delta : float):
 		squirrel_state.Idle:
 			squirrel_animated.play("Idle")
 			squirrel_idle(delta)
-		squirrel_state.Shoot:
-			squirrel_animated.play("Shoot_Nuts")
-			squirrel_shoot(delta)
 		squirrel_state.Chase: 
 			squirrel_animated.play("Chase")
 			squirrel_chase(delta)
