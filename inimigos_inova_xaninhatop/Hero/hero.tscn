@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjdl72te0khrv"]
+[gd_scene load_steps=5 format=3 uid="uid://bjdl72te0khrv"]
 
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_fttlo"]
 [ext_resource type="Texture2D" uid="uid://dwptxt1mln5bg" path="res://Sprite/icon.svg" id="2_2cftc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7fn0"]
+size = Vector2(29.125, 28.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4whll"]
 size = Vector2(23, 23)
@@ -15,6 +18,12 @@ script = ExtResource("1_fttlo")
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_2cftc")
 
-[node name="HitBox" type="CollisionShape2D" parent="."]
+[node name="HurtBox" type="Area2D" parent="."]
+
+[node name="Hurt_Shape" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("RectangleShape2D_j7fn0")
+debug_color = Color(1, 0.216402, 0.649892, 0.42)
+
+[node name="Cats_Body" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_4whll")
-debug_color = Color(0.375106, 0.611599, 0.168163, 0.42)
+debug_color = Color(0.129412, 1, 0.207843, 0.419608)

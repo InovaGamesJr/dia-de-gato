@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://crux2u7qaiw4n"]
+[gd_scene load_steps=6 format=3 uid="uid://crux2u7qaiw4n"]
 
+[ext_resource type="Script" path="res://Enemys/enemy_mortar_squirrel.gd" id="1_ddc73"]
 [ext_resource type="Texture2D" uid="uid://dwptxt1mln5bg" path="res://Sprite/icon.svg" id="1_uf631"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lcymj"]
@@ -20,8 +21,10 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_alsxn"]
 size = Vector2(36, 36)
 
-[node name="Enemy_Mortar_Squirrel" type="CharacterBody2D"]
+[node name="Enemy_Mortar_Squirrel" type="CharacterBody2D" groups=["Enemy", "Enemy_Squirrel"]]
 scale = Vector2(0.5, 0.5)
+collision_layer = 4
+script = ExtResource("1_ddc73")
 
 [node name="Squirrel_Animated" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.3, 0.3)
@@ -32,3 +35,11 @@ autoplay = "Shoot"
 [node name="HitBox" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_alsxn")
 debug_color = Color(0.308823, 0.62689, 0, 0.42)
+
+[node name="Shooting" type="Timer" parent="."]
+autostart = true
+
+[node name="Nuts_Point" type="Marker2D" parent="."]
+position = Vector2(0, 8)
+
+[connection signal="timeout" from="Shooting" to="." method="_on_shooting_timeout"]

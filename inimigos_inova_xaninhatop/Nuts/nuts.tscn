@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://0rhkij06sxo1"]
+
+[ext_resource type="Texture2D" uid="uid://dwptxt1mln5bg" path="res://Sprite/icon.svg" id="1_h5orf"]
+[ext_resource type="Script" path="res://Nuts/nuts.gd" id="2_tcxgy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p26ju"]
+atlas = ExtResource("1_h5orf")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f5aw4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p26ju")
+}],
+"loop": true,
+"name": &"Nut",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pm7xi"]
+radius = 61.0
+height = 196.0
+
+[node name="Nuts" type="AnimatedSprite2D" groups=["Player"]]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_f5aw4")
+animation = &"Nut"
+script = ExtResource("2_tcxgy")
+
+[node name="Vanish_Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="Nut_Shape" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_pm7xi")
+debug_color = Color(0.322318, 0.332442, 4.81308e-08, 0.42)
+
+[connection signal="timeout" from="Vanish_Timer" to="." method="_on_vanish_timer_timeout"]
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
