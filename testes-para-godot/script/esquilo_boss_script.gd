@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
-@onready var centrodoplayer = get_parent().get_node("boneco/Marker2D")
+@onready var centrodoplayer = get_parent().get_node("gato/centro_gato")
 @onready var player_cast : RayCast2D = $mira_player
 @onready var esquilo : CharacterBody2D = $"."
-@onready var boneco = $"../boneco"
+@onready var boneco = $"../gato"
 
 var positionx : float 
 var positiony : float 
@@ -164,11 +164,11 @@ func puxao(areaposition, duration):
 	
 	
 func _on_area_detecção_1_body_entered(body: Node2D) -> void:
-	if body.name == "boneco" and state == states.grab:
+	if body.name == "gato" and state == states.grab:
 		$grab_node/timer_grab.start()
 
 func _on_area_detecção_1_body_exited(body: Node2D) -> void:
-	if body.name == "boneco" and state == states.grab:
+	if body.name == "gato" and state == states.grab:
 		$grab_node/timer_grab.stop()
 	
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://dwhxr5xmal0lu"]
+[gd_scene load_steps=53 format=3 uid="uid://dwhxr5xmal0lu"]
 
 [ext_resource type="Script" path="res://script/boneco.gd" id="1_nkuau"]
 [ext_resource type="Texture2D" uid="uid://cw8g6rnafw4qo" path="res://personagem/Asset Packs 1-5/Asset Packs 1-4 (final)/Asset Pack-V1/Player Idle/Player Idle 48x48.png" id="2_hneby"]
@@ -263,7 +263,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_m04tm"]
 resource_name = "dash"
-length = 0.45
+length = 0.24
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -284,7 +284,7 @@ tracks/1/path = NodePath("sprites_gato:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0449082, 0.0888503, 0.133647, 0.178815, 0.225097, 0.271863, 0.314467, 0.360007, 0.407627),
+"times": PackedFloat32Array(0, 0.0242942, 0.0508771, 0.0761448, 0.103954, 0.130707, 0.155774, 0.182103, 0.208114, 0.230322),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -604,15 +604,17 @@ _data = {
 radius = 6.0
 height = 26.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yc7gm"]
+radius = 6.0
+
 [node name="gato" type="CharacterBody2D"]
 script = ExtResource("1_nkuau")
 
 [node name="sprites_gato" type="AnimatedSprite2D" parent="."]
-position = Vector2(13, -12)
+position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_fwyg0")
-animation = &"dash"
+animation = &"running"
 frame = 1
-offset = Vector2(-12, -4)
 
 [node name="animações_gato" type="AnimationPlayer" parent="."]
 libraries = {
@@ -623,3 +625,11 @@ autoplay = "idle"
 [node name="colisão_gato" type="CollisionShape2D" parent="."]
 position = Vector2(0, -13)
 shape = SubResource("CapsuleShape2D_w15dx")
+
+[node name="area de colisão" type="Area2D" parent="."]
+
+[node name="colisão" type="CollisionShape2D" parent="area de colisão"]
+position = Vector2(0, -15)
+shape = SubResource("CapsuleShape2D_yc7gm")
+
+[connection signal="area_entered" from="area de colisão" to="." method="_on_area_de_colisão_area_entered"]

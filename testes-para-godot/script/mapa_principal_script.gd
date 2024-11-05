@@ -1,7 +1,7 @@
 extends Node2D
 
 var speed = 3
-@onready var pcam_boneco: PhantomCamera2D = $boneco/Pcam_boneco
+@onready var pcam_boneco: PhantomCamera2D = $gato/Pcam_gato
 @onready var pcam_boss: PhantomCamera2D = $Boss_Esquilo/Pcam_boss
 @onready var going: Area2D = $Area2D
 @onready var pcam_meio: PhantomCamera2D = $camera_meio/Pcam_meio
@@ -23,8 +23,7 @@ func _physics_process(_delta: float) -> void:
 func zoom_to_boss(_body):
 	#Toda a parte de camera na chegada do boss, pode ser mudada!!!
 	$Area2D.queue_free()
-	var player = $boneco
-	player.state = player.States.waiting
+	var player = $gato
 	
 	pcam_boss.set_tween_duration(3.5)
 	pcam_boss.set_priority(20)
@@ -40,6 +39,6 @@ func zoom_to_boss(_body):
 	pcam_meio.set_priority(20)
 	
 	await pcam_meio.tween_completed
-	player.state = player.States.idle
+	player.state = player.states.idle
 
 	

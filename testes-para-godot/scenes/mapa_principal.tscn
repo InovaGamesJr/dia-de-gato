@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cdjcc5cl2pt0p"]
+[gd_scene load_steps=17 format=3 uid="uid://cdjcc5cl2pt0p"]
 
 [ext_resource type="Script" path="res://script/mapa_principal_script.gd" id="1_egasq"]
 [ext_resource type="Texture2D" uid="uid://djb4txdofsa0l" path="res://tiles/Textures-16.png" id="1_w5pep"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bkuxvij4kq07f" path="res://scenes/static_body_2d.tscn" id="5_ukj7c"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="5_xstlf"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_10sox"]
+[ext_resource type="PackedScene" uid="uid://bx55i1xe4khh3" path="res://scenes/escada.tscn" id="9_ffpps"]
 
 [sub_resource type="Resource" id="Resource_43lx2"]
 script = ExtResource("6_10sox")
@@ -487,7 +488,9 @@ size = Vector2(36.5938, 45.2813)
 script = ExtResource("1_egasq")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+physics_interpolation_mode = 1
 visible = false
+position = Vector2(479, 522)
 zoom = Vector2(3, 3)
 process_callback = 0
 limit_bottom = 630
@@ -497,9 +500,14 @@ process_priority = 300
 process_physics_priority = 300
 script = ExtResource("2_lm0nj")
 
+[node name="escada" parent="." instance=ExtResource("9_ffpps")]
+position = Vector2(260, 574)
+
 [node name="gato" parent="." instance=ExtResource("3_8ce5n")]
+position = Vector2(479, 576)
 
 [node name="Pcam_gato" type="Node2D" parent="gato" node_paths=PackedStringArray("follow_target")]
+position = Vector2(0, -54)
 script = ExtResource("5_xstlf")
 priority = 15
 follow_mode = 2
@@ -511,6 +519,7 @@ draw_limits = true
 limit_bottom = 630
 
 [node name="centro_gato" type="Marker2D" parent="gato"]
+position = Vector2(0, -13)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_d34tp")
