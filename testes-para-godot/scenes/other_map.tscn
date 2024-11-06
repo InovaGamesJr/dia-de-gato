@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d4bqgbh5bwiur"]
+[gd_scene load_steps=13 format=3 uid="uid://d4bqgbh5bwiur"]
 
 [ext_resource type="Script" path="res://script/mapa_morcego_script.gd" id="1_cvsok"]
 [ext_resource type="Texture2D" uid="uid://djb4txdofsa0l" path="res://tiles/Textures-16.png" id="1_msnue"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dcsnfodluwla5" path="res://icon.svg" id="5_s0hvq"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="7_u1722"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="8_lpgxl"]
+[ext_resource type="PackedScene" uid="uid://bkuxvij4kq07f" path="res://scenes/static_body_2d.tscn" id="9_idx12"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ivh3s"]
 texture = ExtResource("1_msnue")
@@ -477,7 +478,7 @@ texture = ExtResource("1_msnue")
 25:15/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_l7706"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 2
 sources/0 = SubResource("TileSetAtlasSource_ivh3s")
 
 [sub_resource type="Resource" id="Resource_hdtrn"]
@@ -547,5 +548,13 @@ zoom = Vector2(2, 2)
 tween_resource = SubResource("Resource_hdtrn")
 tween_on_load = false
 draw_limits = true
+
+[node name="plataformas" type="Node" parent="."]
+
+[node name="plataforma 1" parent="plataformas" instance=ExtResource("9_idx12")]
+position = Vector2(591, 630)
+
+[node name="plataforma 2" parent="plataformas" instance=ExtResource("9_idx12")]
+position = Vector2(869, 629)
 
 [editable path="Morcego"]

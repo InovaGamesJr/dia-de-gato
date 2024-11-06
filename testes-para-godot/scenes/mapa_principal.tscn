@@ -500,7 +500,7 @@ process_priority = 300
 process_physics_priority = 300
 script = ExtResource("2_lm0nj")
 
-[node name="escada" parent="." instance=ExtResource("9_ffpps")]
+[node name="enemy" parent="." instance=ExtResource("9_ffpps")]
 position = Vector2(260, 574)
 
 [node name="gato" parent="." instance=ExtResource("3_8ce5n")]

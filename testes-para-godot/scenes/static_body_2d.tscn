@@ -1,21 +1,17 @@
 [gd_scene load_steps=3 format=3 uid="uid://bkuxvij4kq07f"]
 
-[ext_resource type="Texture2D" uid="uid://djb4txdofsa0l" path="res://tiles/Textures-16.png" id="1_h13ae"]
+[ext_resource type="Texture2D" uid="uid://28ssq3i4cqde" path="res://plataforma morcego.aseprite" id="1_bvnw4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u1w0b"]
-size = Vector2(39, 3)
+size = Vector2(80, 3.5)
 
 [node name="plataforma" type="StaticBody2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture_repeat = 2
-position = Vector2(-19.75, -1.75)
-scale = Vector2(2.5, 0.357143)
-texture = ExtResource("1_h13ae")
-region_enabled = true
-region_rect = Rect2(48.109, 208.259, 15.3, 7.518)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-19.5, -1.5)
+position = Vector2(-1, -128.75)
 shape = SubResource("RectangleShape2D_u1w0b")
 one_way_collision = true
+
+[node name="PlataformaMorcego" type="Sprite2D" parent="."]
+position = Vector2(0, -63)
+texture = ExtResource("1_bvnw4")

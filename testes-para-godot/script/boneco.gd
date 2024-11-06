@@ -5,13 +5,15 @@ extends CharacterBody2D
 var speed_movement : int = 140
 var jumping_force : int = -200
 var gravity_force : int = 800
-enum states {idle, running, jumping, dash, climbing}
+enum states {idle, running, jumping, dash, climbing, knockback}
 var state = states.idle
 var dash_velocity = Vector2(80, 0)
-var climb_speed : int = 50
+var climb_speed : int = -50
+var on_leader : bool = false
+var knockback_velocity = Vector2(40, 0)
 
 func _process(_delta: float) -> void:
-	print(state)
+	print(on_leader)
 
 
 func _physics_process(delta):
@@ -26,14 +28,14 @@ func _physics_process(delta):
 			dash(delta)
 		states.climbing:
 			climbing()
+		states.knockback:
+			knockback(delta)
 		
 	move_and_slide()
 
 func idle(delta):
-	if not is_on_floor():
-		gravity(delta)
+	velocity.x = 0
 	if is_on_floor():
-		velocity.x = 0
 		animation.play("idle")
 	if Input.get_axis("left", "right"):
 		state = states.running
@@ -41,12 +43,19 @@ func idle(delta):
 		state = states.jumping
 	if Input.is_action_just_pressed("dash"):
 		state = states.dash
+		
+	if on_leader == true:
+		leader()
+	
+	if on_leader == false:
+		gravity(delta)
 	
 func running(delta):
 	var direction = Input.get_axis("left", "right")
 	if direction:
 		velocity.x = direction * speed_movement
-		animation.play("running")
+		if is_on_floor():
+			animation.play("running")
 	else:
 		velocity.x = 0
 		state = states.idle
@@ -63,6 +72,10 @@ func running(delta):
 		$sprites_gato.flip_h = false
 		dash_velocity = Vector2(80, 0)
 	gravity(delta)
+	
+	if on_leader == true:
+		leader()
+
 
 func jumping(delta):
 	if Input.is_action_pressed("jump") and is_on_floor():
@@ -80,8 +93,7 @@ func dash(delta):
 		animation.play("dash")
 		await animation.animation_finished
 		state = states.idle
-	gravity(delta)
-
+		
 func climbing():
 	velocity.x = 0
 	if Input.is_action_pressed("climb"):
@@ -91,7 +103,21 @@ func climbing():
 
 func gravity(delta):
 	velocity.y += gravity_force * delta
+	
+func leader():
+	if Input.is_action_pressed("climb"):
+		velocity.y = climb_speed
+	else:
+		velocity.y = 0
 
+func knockback(delta):
+	velocity = knockback_velocity.normalized() * 150
+	animation.play("knockback")
+	await animation.animation_finished
+	state = states.idle
+	
+	gravity(delta)
+	
 func _on_area_puxao_body_entered(body: Node2D) -> void:
 	if body.name == "boneco":
 		await get_tree().create_timer(0.2).timeout
@@ -102,8 +128,10 @@ func _on_area_puxao_body_entered(body: Node2D) -> void:
 
 func _on_area_de_colisão_area_entered(area: Area2D) -> void:
 	if area.name == "escada":
-		state = states.climbing
+		on_leader = true
 	if area.name == "enemy":
-		pass
+		state = states.knockback
 	if area.name == "kill_zone":
+		pass
+	if area.name == "check_point":
 		pass

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blesck5ru6iee"
-path="res://.godot/imported/ataque.aseprite-ccd83af6461e8277cf57c2c315f91611.ctex"
+uid="uid://28ssq3i4cqde"
+path="res://.godot/imported/plataforma morcego.aseprite-034f4b9daf3eaa19ce80f5bfdd73164e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://personagem/ataque.aseprite"
-dest_files=["res://.godot/imported/ataque.aseprite-ccd83af6461e8277cf57c2c315f91611.ctex"]
+source_file="res://plataforma morcego.aseprite"
+dest_files=["res://.godot/imported/plataforma morcego.aseprite-034f4b9daf3eaa19ce80f5bfdd73164e.ctex"]
 
 [params]
 
