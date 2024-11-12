@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 @onready var player = get_parent().get_node("player").get_node("boneco")
-enum states {idle, fling, chasing, right, left, chase}
+enum states {idle, fling, chasing, right, left, chase, waiting}
 var state = states.idle
 var ondas = preload("res://scenes/ondas.tscn")
 var speed = 40
@@ -16,10 +16,7 @@ func _ready() -> void:
 func _process(float):
 	var player_position = player.position
 	$RayCast2D.target_position = player_position - global_position
-	match state:
-		states.right:
-			right()
-			$"timer para chase".start()
+
 func _physics_process(delta):
 	match state:
 		
@@ -34,6 +31,9 @@ func _physics_process(delta):
 			
 		states.chase:
 			chase(delta)
+		
+		states.waiting:
+			pass
 	
 func idle():
 	velocity.y = speed

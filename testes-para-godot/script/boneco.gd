@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var animation = $"animações_gato"
 
 var speed_movement : int = 140
-var jumping_force : int = -200
+var jumping_force : int = -340
 var gravity_force : int = 800
 enum states {idle, running, jumping, dash, climbing, knockback}
 var state = states.idle
@@ -11,9 +11,12 @@ var dash_velocity = Vector2(80, 0)
 var climb_speed : int = -50
 var on_leader : bool = false
 var knockback_velocity = Vector2(40, 0)
+var double_jump : bool = false
+
+
 
 func _process(_delta: float) -> void:
-	print(on_leader)
+	print(state)
 
 
 func _physics_process(delta):
@@ -81,8 +84,13 @@ func jumping(delta):
 	if Input.is_action_pressed("jump") and is_on_floor():
 		velocity.y = jumping_force
 		animation.play("jumping")
-		if is_on_floor():
-			state = states.idle
+	if Input.is_action_pressed("jump") and double_jump == false and !is_on_floor():
+		double_jump = true
+		velocity.y = jumping_force
+		animation.play("jumping")
+	if is_on_floor():
+		double_jump = false
+		state = states.idle
 	if Input.get_axis("left", "right"):
 		state = states.running
 	gravity(delta)
