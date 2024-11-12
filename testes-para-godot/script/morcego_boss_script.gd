@@ -1,21 +1,18 @@
 extends CharacterBody2D
 
-
+@onready var centrodoplayer = get_parent().get_node("player/centro_gato")
 @onready var player = get_parent().get_node("player").get_node("boneco")
 enum states {idle, fling, chasing, right, left, chase, waiting}
 var state = states.idle
 var ondas = preload("res://scenes/ondas.tscn")
-var speed = 40
+var speed : int = -120
 var enemy_go
 
 func _ready() -> void:
-	match state:
-		states.right:
-			$"timer para chase".start()
+	pass
 
 func _process(float):
-	var player_position = player.position
-	$RayCast2D.target_position = player_position - global_position
+	$RayCast2D.target_position = centrodoplayer.global_position - self.global_position
 
 func _physics_process(delta):
 	match state:
@@ -34,20 +31,18 @@ func _physics_process(delta):
 		
 		states.waiting:
 			pass
+		
+		states.right:
+			right()
+	
+	move_and_slide()
 	
 func idle():
 	velocity.y = speed
-	if self.position.y >= 494:
-		velocity.y = 0
-		state = states.fling
-	move_and_slide()
-	
-func fling():
-	velocity.y = -speed * 2
-	if self.position.y <= 330:
-		velocity.y = 0
-		state = states.chasing
-	move_and_slide()
+	await get_tree().create_timer(2.0).timeout
+	velocity.y = 0
+	state = states.right
+
 	
 func chasing(delta):
 	var random_int = 1
@@ -55,33 +50,30 @@ func chasing(delta):
 		state = states.left
 	elif random_int == 1:
 		state = states.right
-	move_and_slide()
+
 	
 func right():
-	velocity.x = speed * 2
-	if self.position.x >= 1050:
+	velocity.x = speed * -2
+	if self.position.x >= 1120:
 		velocity.x = 0
-	move_and_slide()
-	
+		$"timer para onda".start()
+		state = states.fling
 
+func fling():
+	await get_tree().create_timer(7.0).timeout
+	$"timer para onda".stop()
+	state = states.chase
+	
 func chase(delta):
-	velocity.x = 0
-	var player = get_parent().get_node("boneco")
-	var target = (player.position - position).normalized()
-	move_and_collide(target * delta * speed * 6)
-	print(self.global_position)
+	pass
 
 
 func _on_timer_para_onda_timeout():
-	var ondas1 = ondas.instantiate()
-	get_parent().add_child(ondas1)
-	ondas1.position = $"../segundo marcado".global_position
-	ondas1.rotation = 1.0
-	ondas1.velocit = Vector2(188, 222)
-	var tween = create_tween()
-	tween.tween_property(ondas1, "scale", Vector2(3, 3), 4.5)
+	print("opa")
+	var waves = ondas.instantiate()
+	get_parent().add_child(waves)
+	waves.position = self.global_position
+	waves.velocit = $RayCast2D.target_position
 	
-	
-
 func _on_timer_para_chase_timeout() -> void:
-	print("presta")
+	pass

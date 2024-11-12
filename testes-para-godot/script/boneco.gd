@@ -12,11 +12,11 @@ var climb_speed : int = -50
 var on_leader : bool = false
 var knockback_velocity = Vector2(40, 0)
 var double_jump : bool = false
-
+var dash_timer : bool = true
 
 
 func _process(_delta: float) -> void:
-	print(state)
+	pass
 
 
 func _physics_process(delta):
@@ -44,7 +44,7 @@ func idle(delta):
 		state = states.running
 	if Input.is_action_just_pressed("jump"):
 		state = states.jumping
-	if Input.is_action_just_pressed("dash"):
+	if Input.is_action_just_pressed("dash") and dash_timer == true:
 		state = states.dash
 		
 	if on_leader == true:
@@ -64,16 +64,18 @@ func running(delta):
 		state = states.idle
 	if Input.is_action_just_pressed("jump"):
 		state = states.jumping
-	if Input.is_action_just_pressed("dash"):
+	if Input.is_action_just_pressed("dash") and dash_timer == true:
 		state = states.dash
 	
 	
 	if direction == -1:
 		$sprites_gato.flip_h = true
-		dash_velocity = Vector2(-80, 0)
+		dash_velocity = Vector2(-85, 0)
+		knockback_velocity = Vector2(40, 0)
 	elif direction == 1:
 		$sprites_gato.flip_h = false
-		dash_velocity = Vector2(80, 0)
+		knockback_velocity = Vector2(-40, 0)
+		dash_velocity = Vector2(85, 0)
 	gravity(delta)
 	
 	if on_leader == true:
@@ -100,6 +102,8 @@ func dash(delta):
 		velocity = dash_velocity.normalized() * 300
 		animation.play("dash")
 		await animation.animation_finished
+		$dash_timer.start()
+		dash_timer = false
 		state = states.idle
 		
 func climbing():
@@ -139,7 +143,13 @@ func _on_area_de_colisão_area_entered(area: Area2D) -> void:
 		on_leader = true
 	if area.name == "enemy":
 		state = states.knockback
+	if area.name == "boss_area":
+		state = states.knockback
 	if area.name == "kill_zone":
 		pass
 	if area.name == "check_point":
 		pass
+
+
+func _on_dash_timer_timeout() -> void:
+	dash_timer = true
