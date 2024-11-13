@@ -26,7 +26,7 @@ func _physics_process(delta: float):
 	move_and_slide()
 	
 	handle_state_and_animations(delta)
-	print("Current_State: ",  squirrel_state.keys()[current_state])
+	#print("Current_State: ",  squirrel_state.keys()[current_state])
 
 func enemy_gravity(delta : float):
 	velocity.y += gravity * delta

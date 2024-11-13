@@ -70,7 +70,7 @@ animations = [{
 size = Vector2(36, 36)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r5ukr"]
-radius = 200.0
+radius = 225.0
 
 [node name="Enemy_Squirrel_Chaser" type="CharacterBody2D" node_paths=PackedStringArray("enemy_squirrel") groups=["Enemy", "Enemy_Squirrel"]]
 scale = Vector2(0.5, 0.5)

@@ -17,6 +17,6 @@ func enemy_gravity(delta : float):
 
 func _on_shooting_timeout():
 	var nut_instance = nut.instantiate() as Node2D
-	nut_instance.global_position =nuts_point.global_position
+	nut_instance.global_position = nuts_point.global_position
 	get_parent().add_child(nut_instance)
 	squirrel_animated.play("Shoot")

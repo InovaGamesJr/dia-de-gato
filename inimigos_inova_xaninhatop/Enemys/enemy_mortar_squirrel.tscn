@@ -32,14 +32,14 @@ sprite_frames = SubResource("SpriteFrames_ayxan")
 animation = &"Shoot"
 autoplay = "Shoot"
 
+[node name="Nuts_Point" type="Marker2D" parent="."]
+position = Vector2(0, 8)
+
 [node name="HitBox" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_alsxn")
 debug_color = Color(0.308823, 0.62689, 0, 0.42)
 
 [node name="Shooting" type="Timer" parent="."]
 autostart = true
-
-[node name="Nuts_Point" type="Marker2D" parent="."]
-position = Vector2(0, 8)
 
 [connection signal="timeout" from="Shooting" to="." method="_on_shooting_timeout"]

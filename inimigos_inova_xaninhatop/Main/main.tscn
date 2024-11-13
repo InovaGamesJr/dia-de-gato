@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bkjeldty40alr"]
+[gd_scene load_steps=13 format=3 uid="uid://bkjeldty40alr"]
 
 [ext_resource type="Script" path="res://Main/camera_2d.gd" id="1_bhjvv"]
 [ext_resource type="Texture2D" uid="uid://dwptxt1mln5bg" path="res://Sprite/icon.svg" id="1_lsc0s"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dwok6jk07mqp5" path="res://Enemys/enemy_rat.tscn" id="4_g3u5l"]
 [ext_resource type="PackedScene" uid="uid://bd7waua8am21s" path="res://Enemys/enemy_bat.tscn" id="5_ad66m"]
 [ext_resource type="PackedScene" uid="uid://crux2u7qaiw4n" path="res://Enemys/enemy_mortar_squirrel.tscn" id="8_jhd3i"]
+[ext_resource type="PackedScene" uid="uid://wo4wisnr8nov" path="res://Enemys/enemy_shooter_squirrel.tscn" id="9_e4cx1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5635v"]
 texture = ExtResource("1_lsc0s")
@@ -168,7 +169,7 @@ shape = SubResource("SegmentShape2D_qdilg")
 script = ExtResource("3_6no7y")
 
 [node name="Hero" parent="." instance=ExtResource("2_v1uab")]
-position = Vector2(-192, -20)
+position = Vector2(-194, -12)
 
 [node name="Enemy_Rat" parent="." instance=ExtResource("4_g3u5l")]
 visible = false
@@ -185,10 +186,10 @@ collision_mask = 9
 visible = false
 position = Vector2(-83, -137)
 
-[node name="Enemy_Mortar_Squirrel" parent="." instance=ExtResource("8_jhd3i")]
-position = Vector2(-79, -180)
+[node name="Enemy_Shooter_Squirrel" parent="." instance=ExtResource("9_e4cx1")]
+position = Vector2(213, -9)
 
-[node name="Enemy_Mortar_Squirrel2" parent="." instance=ExtResource("8_jhd3i")]
-position = Vector2(105, -180)
+[node name="Enemy_Mortar_Squirrel" parent="." instance=ExtResource("8_jhd3i")]
+position = Vector2(-79, -170)
 
 [connection signal="body_entered" from="Awaken_Bats" to="Awaken_Bats/Alarm" method="_on_awaken_bats_body_entered"]
