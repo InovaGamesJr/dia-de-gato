@@ -8,7 +8,7 @@ modulate = Color(0, 0, 0, 1)
 scale = Vector2(0.8, 0.8)
 script = ExtResource("1_makaq")
 
-[node name="AnimatedSprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.65516)
 texture = ExtResource("1_i76gp")
 

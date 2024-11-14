@@ -886,6 +886,7 @@ script = ExtResource("1_cvsok")
 
 [node name="camerahost" type="Camera2D" parent="."]
 position = Vector2(728, 481)
+enabled = false
 zoom = Vector2(2, 2)
 process_callback = 0
 
@@ -902,16 +903,16 @@ layer_0/tile_data = PackedInt32Array(2555904, 65536, 13, 2555905, 458752, 1, 255
 
 [node name="player" type="Node" parent="."]
 
-[node name="centro_gato" type="Marker2D" parent="player"]
-position = Vector2(730, 618)
-scale = Vector2(2.25, 2.25)
-
 [node name="boneco" parent="player" instance=ExtResource("2_l5dp4")]
 position = Vector2(729, 631)
 scale = Vector2(1.5, 1.5)
 
+[node name="centro_gato" type="Marker2D" parent="player/boneco"]
+position = Vector2(0.666687, -8.66669)
+scale = Vector2(1.5, 1.5)
+
 [node name="Morcego" parent="." instance=ExtResource("3_aoqdr")]
-position = Vector2(730, 431)
+position = Vector2(980, 584)
 scale = Vector2(1, 1)
 
 [node name="RayCast2D" parent="Morcego" index="2"]

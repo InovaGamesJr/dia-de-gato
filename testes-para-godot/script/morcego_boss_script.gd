@@ -1,72 +1,74 @@
 extends CharacterBody2D
 
-@onready var centrodoplayer = get_parent().get_node("player/centro_gato")
-@onready var player = get_parent().get_node("player").get_node("boneco")
-enum states {idle, fling, chasing, right, left, chase, waiting}
-var state = states.idle
+@onready var centrodoplayer = get_parent().get_node("player/boneco/centro_gato")
+enum states {wait, idle, fling, waves, chase, position_chase}
+var state = states.wait
 var ondas = preload("res://scenes/ondas.tscn")
-var speed : int = -120
-var enemy_go
+var fling_speed : int = -120
+var speed : int = 200
+var initial_position : Vector2 = Vector2(726, 440)
+var direction : int = 1
+var player_position : Vector2
+var numero_random
 
 func _ready() -> void:
+	await get_tree().create_timer(5.0).timeout
+	state = states.idle
+
+func _process(delta: float) -> void:
 	pass
-
-func _process(float):
-	$RayCast2D.target_position = centrodoplayer.global_position - self.global_position
-
 func _physics_process(delta):
 	match state:
-		
+		states.wait:
+			pass
 		states.idle:
 			idle()
-			
-		states.chasing:
-			chasing(delta)
-			
 		states.fling:
 			fling()
-			
+		states.waves:
+			waves()
 		states.chase:
-			chase(delta)
-		
-		states.waiting:
-			pass
-		
-		states.right:
-			right()
+			chase()
+		states.position_chase:
+			position_chase()
 	
 	move_and_slide()
 	
 func idle():
-	velocity.y = speed
-	await get_tree().create_timer(2.0).timeout
-	velocity.y = 0
-	state = states.right
-
+	#O objetivo aqui é ele sempre voltar pra sua posição inicial após um chase no player
+	var tween = create_tween()
+	tween.tween_property($".", "global_position", Vector2(726, 440), 2)
+	await get_tree().create_timer(3.0).timeout
+	state = states.fling
 	
-func chasing(delta):
-	var random_int = 1
-	if random_int == 0:
-		state = states.left
-	elif random_int == 1:
-		state = states.right
-
-	
-func right():
-	velocity.x = speed * -2
-	if self.position.x >= 1120:
-		velocity.x = 0
-		$"timer para onda".start()
-		state = states.fling
 
 func fling():
+	velocity.y = fling_speed
+	if position.y <= 250:
+		velocity.y = 0
+		$"timer para onda".start()
+		numero_random = randi_range(1,3)
+		state = states.waves
+
+func waves():
 	await get_tree().create_timer(7.0).timeout
 	$"timer para onda".stop()
-	state = states.chase
+	if $"timer para onda".is_stopped():
+		if numero_random == 1:
+			direction = 1
+		if numero_random == 2:
+			direction = -1
+		state = states.position_chase
 	
-func chase(delta):
-	pass
 
+func position_chase():
+	velocity.x = direction * 200
+	if position.x >= 1168 and direction == 1:
+		velocity.x = 0
+	if position.x <= 320 and direction == -1:
+		velocity.x = 0
+func chase():
+	velocity = player_position.normalized() * 800
 
 func _on_timer_para_onda_timeout():
 	print("opa")

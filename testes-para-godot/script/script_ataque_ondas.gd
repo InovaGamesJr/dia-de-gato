@@ -1,7 +1,8 @@
 extends CharacterBody2D
 
-var speed = 100
+var speed = 200
 var velocit = Vector2(0, 0)
+@onready var centroplayer = get_parent().get_node("player/boneco/centro_gato")
 
 func _ready() -> void:
 	pass
