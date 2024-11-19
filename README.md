@@ -25,6 +25,5 @@ Repositório para envio e versionamento do jogo Dia de Gato🐱‍👤
 ### Desenvolvimento
 - **Matheus Coutinho**: Responsável por adicionar as HUD's no godot.
 - **Paulo Vinícius**: Mecânicas essenciais para os inimigos do jogo.
-- **João Vitor**: Mecânicas essenciais para o personagem principal do jogo.
 - **Lucas Almeida**: Mecânicas essenciais para os bosses do jogo.
 
