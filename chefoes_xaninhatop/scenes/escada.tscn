@@ -6,7 +6,7 @@
 radius = 24.0
 height = 148.0
 
-[node name="escada" type="Area2D"]
+[node name="KnockbackArea" type="Area2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-3.8147e-06, -73)

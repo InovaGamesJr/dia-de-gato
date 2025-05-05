@@ -1,13 +1,13 @@
 [gd_scene load_steps=13 format=3 uid="uid://d4bqgbh5bwiur"]
 
-[ext_resource type="Script" path="res://script/mapa_morcego_script.gd" id="1_cvsok"]
+[ext_resource type="Script" uid="uid://ck4lybs73y5rw" path="res://script/mapa_morcego_script.gd" id="1_cvsok"]
 [ext_resource type="Texture2D" uid="uid://djb4txdofsa0l" path="res://tiles/Textures-16.png" id="1_msnue"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_ht744"]
+[ext_resource type="Script" uid="uid://dx38d8y1qgu5d" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_ht744"]
 [ext_resource type="PackedScene" uid="uid://dwhxr5xmal0lu" path="res://scenes/gato.tscn" id="2_l5dp4"]
 [ext_resource type="PackedScene" uid="uid://ckbpixulno8v0" path="res://scenes/morcego.tscn" id="3_aoqdr"]
 [ext_resource type="Texture2D" uid="uid://dcsnfodluwla5" path="res://icon.svg" id="5_s0hvq"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="7_u1722"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="8_lpgxl"]
+[ext_resource type="Script" uid="uid://vwo3jexef3g0" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="7_u1722"]
+[ext_resource type="Script" uid="uid://bdype4hgvu700" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="8_lpgxl"]
 [ext_resource type="PackedScene" uid="uid://bkuxvij4kq07f" path="res://scenes/static_body_2d.tscn" id="9_idx12"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ivh3s"]

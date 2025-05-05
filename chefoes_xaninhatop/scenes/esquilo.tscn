@@ -1,9 +1,9 @@
 [gd_scene load_steps=21 format=3 uid="uid://i8njwppn3gil"]
 
-[ext_resource type="Script" path="res://script/esquilo_boss_script.gd" id="1_ip27w"]
-[ext_resource type="Texture2D" uid="uid://n4b10oneavxo" path="res://Mecha-stone Golem 0.1/PNG sheet/Character_sheet.png" id="2_serf8"]
+[ext_resource type="Script" uid="uid://dlasxfne7yw67" path="res://script/Bosses/esquiloBoss.gd" id="1_ip27w"]
+[ext_resource type="Texture2D" uid="uid://n4b10oneavxo" path="res://PlaceholderGolem/PNG sheet/Character_sheet.png" id="2_serf8"]
 [ext_resource type="Texture2D" uid="uid://dqm62npxwj1t1" path="res://corrente2.aseprite" id="3_0swcs"]
-[ext_resource type="Script" path="res://script/grab_node.gd" id="3_vm702"]
+[ext_resource type="Script" uid="uid://5v4qduc6es7w" path="res://script/grab_node.gd" id="3_vm702"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fj6lj"]
 
@@ -134,9 +134,6 @@ frame_progress = 0.808233
 [node name="Colisão esquilo" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -26)
 shape = SubResource("CapsuleShape2D_gor7f")
-
-[node name="mira_player" type="RayCast2D" parent="."]
-target_position = Vector2(0, 60)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.45

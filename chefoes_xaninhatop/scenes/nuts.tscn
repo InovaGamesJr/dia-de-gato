@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://cw1162bux23ef"]
 
 [ext_resource type="Texture2D" uid="uid://dcsnfodluwla5" path="res://icon.svg" id="1_a3fj2"]
-[ext_resource type="Script" path="res://script/bala_nozes_script.gd" id="1_j6vbg"]
-[ext_resource type="Shader" path="res://shaders/nuts.gdshader" id="1_jtxb6"]
+[ext_resource type="Script" uid="uid://bhlugnnhb68u4" path="res://script/bala_nozes_script.gd" id="1_j6vbg"]
+[ext_resource type="Shader" uid="uid://d0i4c7frao8tx" path="res://shaders/nuts.gdshader" id="1_jtxb6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_thknw"]
 shader = ExtResource("1_jtxb6")

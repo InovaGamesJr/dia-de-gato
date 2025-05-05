@@ -1,13 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://cdjcc5cl2pt0p"]
+[gd_scene load_steps=15 format=3 uid="uid://cdjcc5cl2pt0p"]
 
-[ext_resource type="Script" path="res://script/mapa_principal_script.gd" id="1_egasq"]
+[ext_resource type="Script" uid="uid://dh50dqe1maviq" path="res://script/Mapa/ScriptMapaBoss.gd" id="1_egasq"]
 [ext_resource type="Texture2D" uid="uid://djb4txdofsa0l" path="res://tiles/Textures-16.png" id="1_w5pep"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_lm0nj"]
+[ext_resource type="Script" uid="uid://dx38d8y1qgu5d" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_lm0nj"]
 [ext_resource type="PackedScene" uid="uid://dwhxr5xmal0lu" path="res://scenes/gato.tscn" id="3_8ce5n"]
 [ext_resource type="PackedScene" uid="uid://i8njwppn3gil" path="res://scenes/esquilo.tscn" id="4_j60ut"]
-[ext_resource type="PackedScene" uid="uid://bkuxvij4kq07f" path="res://scenes/static_body_2d.tscn" id="5_ukj7c"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="5_xstlf"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_10sox"]
+[ext_resource type="Script" uid="uid://vwo3jexef3g0" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="5_xstlf"]
+[ext_resource type="Script" uid="uid://bdype4hgvu700" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_10sox"]
 [ext_resource type="PackedScene" uid="uid://bx55i1xe4khh3" path="res://scenes/escada.tscn" id="9_ffpps"]
 
 [sub_resource type="Resource" id="Resource_43lx2"]
@@ -481,11 +480,11 @@ duration = 1.0
 transition = 0
 ease = 2
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yw5ke"]
-size = Vector2(36.5938, 45.2813)
-
-[node name="mapa_principal" type="Node2D"]
+[node name="mapa_principal" type="Node2D" node_paths=PackedStringArray("pcamGato", "pcamBoss", "pcamBossFight")]
 script = ExtResource("1_egasq")
+pcamGato = NodePath("gatoEntity/Pcam_gato")
+pcamBoss = NodePath("esquiloBossEntity/Pcam_boss")
+pcamBossFight = NodePath("cameraBossFight/PcamBossFight")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 physics_interpolation_mode = 1
@@ -500,13 +499,13 @@ process_priority = 300
 process_physics_priority = 300
 script = ExtResource("2_lm0nj")
 
-[node name="enemy" parent="." instance=ExtResource("9_ffpps")]
-position = Vector2(260, 574)
+[node name="TesteKnockback" parent="." instance=ExtResource("9_ffpps")]
+position = Vector2(254, 574)
 
-[node name="gato" parent="." instance=ExtResource("3_8ce5n")]
+[node name="gatoEntity" parent="." instance=ExtResource("3_8ce5n")]
 position = Vector2(479, 576)
 
-[node name="Pcam_gato" type="Node2D" parent="gato" node_paths=PackedStringArray("follow_target")]
+[node name="Pcam_gato" type="Node2D" parent="gatoEntity" node_paths=PackedStringArray("follow_target")]
 position = Vector2(0, -54)
 script = ExtResource("5_xstlf")
 priority = 15
@@ -518,20 +517,20 @@ tween_on_load = false
 draw_limits = true
 limit_bottom = 630
 
-[node name="centro_gato" type="Marker2D" parent="gato"]
-position = Vector2(0, -13)
+[node name="centroGato" type="Marker2D" parent="gatoEntity"]
+position = Vector2(1, -9)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_d34tp")
 format = 2
 layer_0/tile_data = PackedInt32Array(2359296, 131074, 29, 2424832, 131074, 30, 2490368, 131074, 30, 2555904, 131074, 31, 2359297, 131074, 29, 2424833, 131074, 30, 2490369, 131074, 30, 2555905, 131074, 31, 2359298, 131074, 29, 2424834, 131074, 30, 2490370, 131074, 30, 2555906, 131074, 31, 2359299, 131074, 29, 2424835, 131074, 30, 2490371, 131074, 30, 2555907, 131074, 31, 2359300, 131074, 29, 2424836, 131074, 30, 2490372, 131074, 30, 2555908, 131074, 31, 2359301, 131074, 29, 2424837, 131074, 30, 2490373, 131074, 30, 2555909, 131074, 31, 2359302, 131074, 29, 2424838, 131074, 30, 2490374, 131074, 30, 2555910, 131074, 31, 2359303, 131074, 29, 2424839, 131074, 30, 2490375, 131074, 30, 2555911, 131074, 31, 2359304, 131074, 29, 2424840, 131074, 30, 2490376, 131074, 30, 2555912, 131074, 31, 2359305, 131074, 29, 2424841, 131074, 30, 2490377, 131074, 30, 2555913, 131074, 31, 2359306, 131074, 29, 2424842, 131074, 30, 2490378, 131074, 30, 2555914, 131074, 31, 2359307, 131074, 29, 2424843, 131074, 30, 2490379, 131074, 30, 2555915, 131074, 31, 2359308, 131074, 29, 2424844, 131074, 30, 2490380, 131074, 30, 2555916, 131074, 31, 2424845, 131074, 30, 2490381, 131074, 30, 2555917, 131074, 31, 2424846, 131074, 30, 2490382, 131074, 30, 2555918, 131074, 31, 2424847, 131074, 30, 2490383, 131074, 30, 2555919, 131074, 31, 2424848, 131074, 30, 2490384, 131074, 30, 2555920, 131074, 31, 2424849, 131074, 30, 2490385, 131074, 30, 2555921, 131074, 31, 2424850, 131074, 30, 2490386, 131074, 30, 2555922, 131074, 31, 2424851, 131074, 30, 2490387, 131074, 30, 2555923, 131074, 31, 2424852, 131074, 30, 2490388, 131074, 30, 2555924, 131074, 31, 2424853, 131074, 30, 2490389, 131074, 30, 2555925, 131074, 31, 2424854, 131074, 30, 2490390, 131074, 30, 2555926, 131074, 31, 2424855, 131074, 30, 2490391, 131074, 30, 2555927, 131074, 31, 2424856, 131074, 30, 2490392, 131074, 30, 2555928, 131074, 31, 2424857, 131074, 30, 2490393, 131074, 30, 2555929, 131074, 31, 2424858, 131074, 30, 2490394, 131074, 30, 2555930, 131074, 31, 2424859, 131074, 30, 2490395, 131074, 30, 2555931, 131074, 31, 2359324, 131074, 29, 2424860, 131074, 30, 2490396, 131074, 30, 2555932, 131074, 31, 2359325, 131074, 29, 2424861, 131074, 30, 2490397, 131074, 30, 2555933, 131074, 31, 2359326, 131074, 29, 2424862, 131074, 30, 2490398, 131074, 30, 2555934, 131074, 31, 2359327, 131074, 29, 2424863, 131074, 30, 2490399, 131074, 30, 2555935, 131074, 31, 2359328, 131074, 29, 2424864, 131074, 30, 2490400, 131074, 30, 2555936, 131074, 31, 2359329, 131074, 29, 2424865, 131074, 30, 2490401, 131074, 30, 2555937, 131074, 31, 2359330, 131074, 29, 2424866, 131074, 30, 2490402, 131074, 30, 2555938, 131074, 31, 2359331, 131074, 29, 2424867, 131074, 30, 2490403, 131074, 30, 2555939, 131074, 31, 2359332, 131074, 29, 2424868, 131074, 30, 2490404, 131074, 30, 2555940, 131074, 31, 2359333, 131074, 29, 2424869, 131074, 30, 2490405, 131074, 30, 2555941, 131074, 31, 2359334, 131074, 29, 2424870, 131074, 30, 2490406, 131074, 30, 2555942, 131074, 31, 2359335, 131074, 29, 2424871, 131074, 30, 2490407, 131074, 30, 2555943, 131074, 31, 2359336, 131074, 29, 2424872, 131074, 30, 2490408, 131074, 30, 2555944, 131074, 31, 2359337, 131074, 29, 2424873, 131074, 30, 2490409, 131074, 30, 2555945, 131074, 31, 2359338, 131074, 29, 2424874, 131074, 30, 2490410, 131074, 30, 2555946, 131074, 31, 2359339, 131074, 29, 2424875, 131074, 30, 2490411, 131074, 30, 2555947, 131074, 31, 2359340, 131074, 29, 2424876, 131074, 30, 2490412, 131074, 30, 2555948, 131074, 31, 2359341, 131074, 29, 2424877, 131074, 30, 2490413, 131074, 30, 2555949, 131074, 31, 2359342, 131074, 29, 2424878, 131074, 30, 2490414, 131074, 30, 2555950, 131074, 31, 2359343, 131074, 29, 2424879, 131074, 30, 2490415, 131074, 30, 2555951, 131074, 31, 2359344, 131074, 29, 2424880, 131074, 30, 2490416, 131074, 30, 2555952, 131074, 31, 2359345, 131074, 29, 2424881, 131074, 30, 2490417, 131074, 30, 2555953, 131074, 31, 2359346, 131074, 29, 2424882, 131074, 30, 2490418, 131074, 30, 2555954, 131074, 31, 2359347, 131074, 29, 2424883, 131074, 30, 2490419, 131074, 30, 2555955, 131074, 31, 2359348, 131074, 29, 2424884, 131074, 30, 2490420, 131074, 30, 2555956, 131074, 31, 2359349, 131074, 29, 2424885, 131074, 30, 2490421, 131074, 30, 2555957, 131074, 31, 2359350, 131074, 29, 2424886, 131074, 30, 2490422, 131074, 30, 2555958, 131074, 31, 2359351, 131074, 29, 2424887, 131074, 30, 2490423, 131074, 30, 2555959, 131074, 31, 2359352, 131074, 29, 2424888, 131074, 30, 2490424, 131074, 30, 2555960, 131074, 31, 2359353, 131074, 29, 2424889, 131074, 30, 2490425, 131074, 30, 2555961, 131074, 31, 2359354, 131074, 29, 2424890, 131074, 30, 2490426, 131074, 30, 2555962, 131074, 31, 2359355, 131074, 29, 2424891, 131074, 30, 2490427, 131074, 30, 2555963, 131074, 31, 2359356, 131074, 29, 2424892, 131074, 30, 2490428, 131074, 30, 2555964, 131074, 31, 2359357, 131074, 29, 2424893, 131074, 30, 2490429, 131074, 30, 2555965, 131074, 31, 2359358, 131074, 29, 2424894, 131074, 30, 2490430, 131074, 30, 2555966, 131074, 31, 2359359, 131074, 29, 2424895, 131074, 30, 2490431, 131074, 30, 2555967, 131074, 31, 2555968, 131074, 31, 2555969, 131074, 31, 2555970, 131074, 31, 2555971, 131074, 31, 2555972, 131074, 31, 2555973, 131074, 31, 2555974, 131074, 31, 2359309, 131074, 29, 2359310, 131074, 29, 2359311, 131074, 29, 2359312, 131074, 29, 2359313, 131074, 29, 2359314, 131074, 29, 2359315, 131074, 29, 2359316, 131074, 29, 2359317, 131074, 29, 2359318, 131074, 29, 2359319, 131074, 29, 2359320, 131074, 29, 2359321, 131074, 29, 2359322, 131074, 29, 2359323, 131074, 29, 1638439, 65538, 16, 1572904, 65538, 16, 1638440, 65538, 16, 1703976, 65538, 16, 1441833, 65538, 16, 1507369, 65538, 16, 1572905, 65538, 16, 1638441, 65538, 16, 1703977, 65538, 16, 1769513, 65538, 16, 1441834, 65538, 16, 1507370, 65538, 16, 1572906, 65538, 16, 1638442, 65538, 16, 1703978, 65538, 16, 1769514, 65538, 16, 1507371, 65538, 16, 1572907, 65538, 16, 1638443, 65538, 16, 1703979, 65538, 16, 1572908, 65538, 16, 1638444, 65538, 16, 1703980, 65538, 16, 1638437, 65538, 16, 1572902, 65538, 16, 1638438, 65538, 16, 1703974, 65538, 16, 1441831, 65538, 16, 1507367, 65538, 16, 1572903, 65538, 16, 1703975, 65538, 16, 1769511, 65538, 16, 1441832, 65538, 16, 1507368, 65538, 16, 1769512, 65538, 16, 1835048, 65538, 16, 1900584, 851970, 12, 1966120, 851970, 12, 2031656, 851970, 12, 2097192, 851970, 12, 2162728, 851970, 12, 1376297, 65538, 16, 1835049, 65538, 16, 1900585, 851970, 12, 1966121, 851970, 12, 2031657, 851970, 12, 2097193, 851970, 12, 2162729, 851970, 12, 1376298, 65538, 16, 2555975, 131074, 31, 2555976, 131074, 31, 2359360, 131074, 29, 2424896, 131074, 30, 2490432, 131074, 30, 2359361, 131074, 29, 2424897, 131074, 30, 2490433, 131074, 30, 2359362, 131074, 29, 2424898, 131074, 30, 2490434, 131074, 30, 2359363, 131074, 29, 2424899, 131074, 30, 2490435, 131074, 30, 2359364, 131074, 29, 2424900, 131074, 30, 2490436, 131074, 30, 2359365, 131074, 29, 2424901, 131074, 30, 2490437, 131074, 30, 2359366, 131074, 29, 2424902, 131074, 30, 2490438, 131074, 30, 2359367, 131074, 29, 2424903, 131074, 30, 2490439, 131074, 30, 2359368, 131074, 29, 2424904, 131074, 30, 2490440, 131074, 30, 1572932, 65538, 16, 1507397, 65538, 16, 1572933, 65538, 16, 1638469, 65538, 16, 1704005, 65538, 16, 1507398, 65538, 16, 1572934, 65538, 16, 1638470, 65538, 16, 1704006, 65538, 16, 1769542, 65538, 16, 1441863, 65538, 16, 1507399, 65538, 16, 1572935, 65538, 16, 1638471, 65538, 16, 1704007, 65538, 16, 1769543, 65538, 16, 1835079, 65538, 16, 1507400, 65538, 16, 1572936, 65538, 16, 1638472, 65538, 16, 1704008, 65538, 16, 1572937, 65538, 16, 1638473, 65538, 16, 1900615, 851970, 12, 1966151, 851970, 12, 2031687, 851970, 12, 2097223, 851970, 12, 2162759, 851970, 12, 2228295, 851970, 12, 2293831, 851970, 12, 1376328, 65538, 16, 1441864, 65538, 16, 1769544, 65538, 16, 1835080, 65538, 16, 1900616, 851970, 12, 1966152, 851970, 12, 2031688, 851970, 12, 2097224, 851970, 12, 2162760, 851970, 12, 2228296, 851970, 12, 2293832, 851970, 12, 1441865, 65538, 16, 1507401, 65538, 16, 1704009, 65538, 16, 1769545, 65538, 16, 1835081, 65538, 16, 1507402, 65538, 16, 1572938, 65538, 16, 1638474, 65538, 16, 1704010, 65538, 16, 1572939, 65538, 16, 1638475, 65538, 16)
 
-[node name="Boss_Esquilo" parent="." instance=ExtResource("4_j60ut")]
+[node name="esquiloBossEntity" parent="." instance=ExtResource("4_j60ut")]
 light_mask = 32
 visibility_layer = 32
 position = Vector2(1161, 462)
 
-[node name="Pcam_boss" type="Node2D" parent="Boss_Esquilo" node_paths=PackedStringArray("follow_target")]
+[node name="Pcam_boss" type="Node2D" parent="esquiloBossEntity" node_paths=PackedStringArray("follow_target")]
 script = ExtResource("5_xstlf")
 priority = 10
 follow_mode = 2
@@ -542,30 +541,16 @@ tween_on_load = false
 draw_limits = true
 limit_bottom = 630
 
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(729, 540)
+[node name="areaMudarCamera" type="Area2D" parent="."]
+position = Vector2(677, 544)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="areaMudarCamera"]
 position = Vector2(8, 14)
 shape = SubResource("RectangleShape2D_1xhui")
 
-[node name="plataformas" type="Node" parent="."]
+[node name="cameraBossFight" type="Node" parent="."]
 
-[node name="plataforma 1" parent="plataformas" instance=ExtResource("5_ukj7c")]
-position = Vector2(1134, 488)
-
-[node name="plataforma 2" parent="plataformas" instance=ExtResource("5_ukj7c")]
-position = Vector2(711, 490)
-
-[node name="plataforma" parent="plataformas" instance=ExtResource("5_ukj7c")]
-position = Vector2(1135, 538)
-
-[node name="plataforma2" parent="plataformas" instance=ExtResource("5_ukj7c")]
-position = Vector2(711, 538)
-
-[node name="camera_meio" type="Node" parent="."]
-
-[node name="Pcam_meio" type="Node2D" parent="camera_meio"]
+[node name="PcamBossFight" type="Node2D" parent="cameraBossFight"]
 position = Vector2(904, 476)
 script = ExtResource("5_xstlf")
 priority = 5
@@ -575,30 +560,3 @@ tween_resource = SubResource("Resource_g2r1w")
 draw_limits = true
 limit_right = 1160
 limit_bottom = 630
-
-[node name="detecção grab" type="Node" parent="."]
-
-[node name="area_detecção 1" type="Area2D" parent="detecção grab"]
-position = Vector2(676, 489)
-
-[node name="colisaoarea2" type="CollisionShape2D" parent="detecção grab/area_detecção 1"]
-position = Vector2(17.8125, -30.7188)
-shape = SubResource("RectangleShape2D_yw5ke")
-
-[node name="colisaoarea3" type="CollisionShape2D" parent="detecção grab/area_detecção 1"]
-position = Vector2(433.375, -30.4375)
-shape = SubResource("RectangleShape2D_yw5ke")
-
-[node name="colisaoarea4" type="CollisionShape2D" parent="detecção grab/area_detecção 1"]
-position = Vector2(17, 20)
-shape = SubResource("RectangleShape2D_yw5ke")
-
-[node name="colisaoarea5" type="CollisionShape2D" parent="detecção grab/area_detecção 1"]
-position = Vector2(437, 22)
-shape = SubResource("RectangleShape2D_yw5ke")
-
-[connection signal="body_entered" from="detecção grab/area_detecção 1" to="Boss_Esquilo" method="_on_area_detecção_1_body_entered"]
-[connection signal="body_entered" from="detecção grab/area_detecção 1" to="Boss_Esquilo/grab_node/grab_sprite" method="_on_area_detecção_1_body_entered"]
-[connection signal="body_exited" from="detecção grab/area_detecção 1" to="Boss_Esquilo" method="_on_area_detecção_1_body_exited"]
-
-[editable path="Boss_Esquilo"]

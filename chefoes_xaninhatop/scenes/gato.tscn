@@ -1,11 +1,11 @@
-[gd_scene load_steps=53 format=3 uid="uid://dwhxr5xmal0lu"]
+[gd_scene load_steps=54 format=3 uid="uid://dwhxr5xmal0lu"]
 
-[ext_resource type="Script" path="res://script/boneco.gd" id="1_nkuau"]
-[ext_resource type="Texture2D" uid="uid://cahr2enjy3ei5" path="res://personagem/Dash.png" id="2_dt8mf"]
-[ext_resource type="Texture2D" uid="uid://263i5b4f0ou5" path="res://personagem/Idle.png" id="3_eykq0"]
-[ext_resource type="Texture2D" uid="uid://cx0snk1c4j7ej" path="res://personagem/Pulo.png" id="4_ipu5h"]
-[ext_resource type="Texture2D" uid="uid://yrfaq2qo41yw" path="res://personagem/Movimentação.png" id="5_a0xst"]
-[ext_resource type="Texture2D" uid="uid://bibbde5hys8hq" path="res://personagem/Dano.png" id="5_l3aql"]
+[ext_resource type="Script" uid="uid://dhf4kdfrlxbf4" path="res://script/Player/Gato.gd" id="1_nkuau"]
+[ext_resource type="Texture2D" uid="uid://dvqu5p4mbrcvo" path="res://Sprites/GatoSprites/Dash.png" id="2_dt8mf"]
+[ext_resource type="Texture2D" uid="uid://bxs26fycmhr8d" path="res://Sprites/GatoSprites/Idle.png" id="3_eykq0"]
+[ext_resource type="Texture2D" uid="uid://myprtrssmcky" path="res://Sprites/GatoSprites/Pulo.png" id="4_ipu5h"]
+[ext_resource type="Texture2D" uid="uid://cfdw1amv58dn4" path="res://Sprites/GatoSprites/Movimentação.png" id="5_a0xst"]
+[ext_resource type="Texture2D" uid="uid://b6k7kfjrv34wk" path="res://Sprites/GatoSprites/Dano.png" id="5_l3aql"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1kcnx"]
 atlas = ExtResource("2_dt8mf")
@@ -285,7 +285,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sprites_gato:frame")
+tracks/0/path = NodePath("spritesGato:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -297,7 +297,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("sprites_gato:animation")
+tracks/1/path = NodePath("spritesGato:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -305,6 +305,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"idle"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_m04tm"]
@@ -314,7 +326,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sprites_gato:animation")
+tracks/0/path = NodePath("spritesGato:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -326,7 +338,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("sprites_gato:frame")
+tracks/1/path = NodePath("spritesGato:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -344,7 +356,7 @@ step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sprites_gato:animation")
+tracks/0/path = NodePath("spritesGato:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -356,7 +368,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("sprites_gato:frame")
+tracks/1/path = NodePath("spritesGato:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -374,7 +386,7 @@ step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sprites_gato:animation")
+tracks/0/path = NodePath("spritesGato:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -386,7 +398,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("sprites_gato:frame")
+tracks/1/path = NodePath("spritesGato:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -403,7 +415,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sprites_gato:animation")
+tracks/0/path = NodePath("spritesGato:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -415,7 +427,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("sprites_gato:frame")
+tracks/1/path = NodePath("spritesGato:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -432,7 +444,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sprites_gato:animation")
+tracks/0/path = NodePath("spritesGato:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -444,7 +456,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("sprites_gato:frame")
+tracks/1/path = NodePath("spritesGato:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -462,7 +474,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sprites_gato:animation")
+tracks/0/path = NodePath("spritesGato:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -474,7 +486,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("sprites_gato:frame")
+tracks/1/path = NodePath("spritesGato:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -484,15 +496,33 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 4, 5]
 }
 
+[sub_resource type="Animation" id="Animation_mll3j"]
+resource_name = "invicible"
+length = 0.809
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_86ksy"]
 _data = {
-"RESET": SubResource("Animation_brt4e"),
-"dash": SubResource("Animation_m04tm"),
-"falling": SubResource("Animation_bjet6"),
-"idle": SubResource("Animation_s58mc"),
-"jumping": SubResource("Animation_8tl1e"),
-"knockback": SubResource("Animation_mpqxx"),
-"running": SubResource("Animation_txy4j")
+&"RESET": SubResource("Animation_brt4e"),
+&"dash": SubResource("Animation_m04tm"),
+&"falling": SubResource("Animation_bjet6"),
+&"idle": SubResource("Animation_s58mc"),
+&"invicible": SubResource("Animation_mll3j"),
+&"jumping": SubResource("Animation_8tl1e"),
+&"knockback": SubResource("Animation_mpqxx"),
+&"running": SubResource("Animation_txy4j")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w15dx"]
@@ -501,22 +531,24 @@ height = 20.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yc7gm"]
 height = 20.0
 
-[node name="gato" type="CharacterBody2D"]
+[node name="gato" type="CharacterBody2D" node_paths=PackedStringArray("animation", "spriteGato")]
 script = ExtResource("1_nkuau")
+animation = NodePath("animacoesGato")
+spriteGato = NodePath("spritesGato")
 
-[node name="sprites_gato" type="AnimatedSprite2D" parent="."]
+[node name="spritesGato" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_fwyg0")
 animation = &"idle"
 frame = 1
 
-[node name="animações_gato" type="AnimationPlayer" parent="."]
+[node name="animacoesGato" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_86ksy")
+&"": SubResource("AnimationLibrary_86ksy")
 }
 autoplay = "idle"
 
-[node name="colisão_gato" type="CollisionShape2D" parent="."]
+[node name="colisaoGato" type="CollisionShape2D" parent="."]
 position = Vector2(1, -10)
 shape = SubResource("CapsuleShape2D_w15dx")
 
@@ -527,8 +559,4 @@ position = Vector2(1, 0)
 position = Vector2(0, -10)
 shape = SubResource("CapsuleShape2D_yc7gm")
 
-[node name="dash_timer" type="Timer" parent="."]
-wait_time = 5.0
-
 [connection signal="area_entered" from="area de colisão" to="." method="_on_area_de_colisão_area_entered"]
-[connection signal="timeout" from="dash_timer" to="." method="_on_dash_timer_timeout"]
