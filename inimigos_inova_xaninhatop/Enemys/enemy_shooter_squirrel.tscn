@@ -1,22 +1,93 @@
-[gd_scene load_steps=9 format=3 uid="uid://wo4wisnr8nov"]
+[gd_scene load_steps=23 format=3 uid="uid://wo4wisnr8nov"]
 
 [ext_resource type="Script" path="res://Enemys/enemy_shooter_squirrel.gd" id="1_7tqbd"]
-[ext_resource type="Texture2D" uid="uid://dwptxt1mln5bg" path="res://Sprite/icon.svg" id="2_hr3q6"]
+[ext_resource type="Texture2D" uid="uid://dtaps3tuijkaw" path="res://Sprite/Squirrel_Shooter/movimentação esquilo-Sheet.png" id="2_008sh"]
+[ext_resource type="Texture2D" uid="uid://b2o70c4hao7qf" path="res://Sprite/Squirrel_Shooter/idle-esquilo-atirador-Sheet.png" id="2_83hce"]
+[ext_resource type="Texture2D" uid="uid://dhh2airx82nca" path="res://Sprite/Squirrel_Shooter/lança nozes ATK-Sheet.png" id="3_b5t5m"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0b1lb"]
-atlas = ExtResource("2_hr3q6")
-region = Rect2(0, 0, 128, 128)
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhp0u"]
+atlas = ExtResource("2_008sh")
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_igt2c"]
-atlas = ExtResource("2_hr3q6")
-region = Rect2(0, 0, 128, 128)
+[sub_resource type="AtlasTexture" id="AtlasTexture_s23qk"]
+atlas = ExtResource("2_008sh")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_or7u8"]
+atlas = ExtResource("2_008sh")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3h8p"]
+atlas = ExtResource("2_008sh")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tawdi"]
+atlas = ExtResource("2_008sh")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qr7x"]
+atlas = ExtResource("2_008sh")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vue6u"]
+atlas = ExtResource("2_008sh")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efogl"]
+atlas = ExtResource("2_83hce")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6usrb"]
+atlas = ExtResource("2_83hce")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1xwt"]
+atlas = ExtResource("2_83hce")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpis6"]
+atlas = ExtResource("3_b5t5m")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_030y2"]
+atlas = ExtResource("3_b5t5m")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bc6dp"]
+atlas = ExtResource("3_b5t5m")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rr8y"]
+atlas = ExtResource("3_b5t5m")
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vh02d"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhp0u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s23qk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_or7u8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3h8p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tawdi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qr7x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vue6u")
+}],
 "loop": true,
 "name": &"Chase",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [],
 "loop": true,
@@ -25,19 +96,34 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0b1lb")
+"texture": SubResource("AtlasTexture_efogl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6usrb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1xwt")
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_igt2c")
+"texture": SubResource("AtlasTexture_rpis6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_030y2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bc6dp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7rr8y")
 }],
-"loop": true,
+"loop": false,
 "name": &"Shoot_Nuts",
-"speed": 5.0
+"speed": 1.5
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bf4qm"]
@@ -57,21 +143,24 @@ enemy_squirrel = NodePath(".")
 time_to_target = 1.5
 
 [node name="Squirrel_Animated" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.3, 0.3)
+position = Vector2(0.6, 0.6)
+scale = Vector2(1.6, 1.6)
 sprite_frames = SubResource("SpriteFrames_vh02d")
-animation = &"Idle"
+animation = &"Chase"
 autoplay = "Idle"
+frame_progress = 0.818316
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
+scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_bf4qm")
 debug_color = Color(0.997576, 0, 0.162861, 0.42)
 
 [node name="Squirrel_Shoot" type="Timer" parent="."]
-wait_time = 1.5
+wait_time = 3.0
 autostart = true
 
 [node name="Nuts_Point" type="Marker2D" parent="."]
-position = Vector2(0, -20)
+position = Vector2(0, -14)
 
 [node name="Shoot_Area" type="Area2D" parent="."]
 collision_layer = 4

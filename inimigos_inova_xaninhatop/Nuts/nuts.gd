@@ -14,7 +14,7 @@ func _on_vanish_timer_timeout():
 	queue_free()
 
 func _on_hit_box_area_entered(area: Area2D):
-	print("Nut atinjiu o player")
+	'print("Nut atinjiu o player")'
 	nut_impact()
 
 func nut_impact():

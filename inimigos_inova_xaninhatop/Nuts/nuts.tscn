@@ -1,19 +1,128 @@
-[gd_scene load_steps=4 format=3 uid="uid://0rhkij06sxo1"]
+[gd_scene load_steps=19 format=3 uid="uid://0rhkij06sxo1"]
 
-[ext_resource type="Texture2D" uid="uid://dwptxt1mln5bg" path="res://Sprite/icon.svg" id="1_h5orf"]
+[ext_resource type="Texture2D" uid="uid://dsblnj2em6qg5" path="res://Nuts/projetil mod esquilo-Sheet.png" id="2_5hwxr"]
 [ext_resource type="Script" path="res://Nuts/nuts.gd" id="2_tcxgy"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_o76fe"]
+atlas = ExtResource("2_5hwxr")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2s2oi"]
+atlas = ExtResource("2_5hwxr")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nrlkx"]
+atlas = ExtResource("2_5hwxr")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xdmwy"]
+atlas = ExtResource("2_5hwxr")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m73hn"]
+atlas = ExtResource("2_5hwxr")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f473d"]
+atlas = ExtResource("2_5hwxr")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhs21"]
+atlas = ExtResource("2_5hwxr")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4ikm"]
+atlas = ExtResource("2_5hwxr")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t74od"]
+atlas = ExtResource("2_5hwxr")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_us5vp"]
+atlas = ExtResource("2_5hwxr")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2ayx"]
+atlas = ExtResource("2_5hwxr")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5u7cx"]
+atlas = ExtResource("2_5hwxr")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ha37c"]
+atlas = ExtResource("2_5hwxr")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agqlh"]
+atlas = ExtResource("2_5hwxr")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gllor"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o76fe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2s2oi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nrlkx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xdmwy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m73hn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f473d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yhs21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h4ikm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t74od")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_us5vp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2ayx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5u7cx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ha37c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_agqlh")
+}],
+"loop": true,
+"name": &"Nuts",
+"speed": 5.0
+}]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pm7xi"]
-radius = 61.0
-height = 138.0
+radius = 60.0
+height = 240.0
 
 [node name="Nuts" type="CharacterBody2D" groups=["Enemy", "Enemy_Squirrel"]]
 scale = Vector2(0.1, 0.1)
 script = ExtResource("2_tcxgy")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("1_h5orf")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_gllor")
+animation = &"Nuts"
+autoplay = "Nuts"
+frame_progress = 0.655649
 
 [node name="Vanish_Timer" type="Timer" parent="."]
 wait_time = 3.0
@@ -25,8 +134,7 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="Nut_Shape" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(0, 1)
-scale = Vector2(1, 1)
+position = Vector2(0, 3.55271e-15)
 shape = SubResource("CapsuleShape2D_pm7xi")
 debug_color = Color(0.322318, 0.332442, 4.81308e-08, 0.42)
 

@@ -24,7 +24,7 @@ var has_target : bool
 var player_position : Vector2
 
 func _ready():
-	current_state = squirrel_state.Shoot
+	current_state = squirrel_state.Idle
 	player = Global.playerBody
 
 func _physics_process(delta : float):
@@ -42,7 +42,7 @@ func enemy_gravity(delta : float):
 func squirrel_idle(delta : float):
 	velocity.x = move_toward(velocity.x, 0, slow_down_speed * delta)
 	if velocity.x == 0:
-		current_state = squirrel_state.Shoot
+		current_state = squirrel_state.Idle
 
 # FUNCAO DE PERSEGUICAO DO ESQUILO
 func squirrel_chase(delta : float):
@@ -55,7 +55,7 @@ func _on_attack_area_body_entered(body : CharacterBody2D):
 		current_state = squirrel_state.Chase
 func _on_attack_area_body_exited(body : CharacterBody2D):
 	if body.is_in_group("Player"):
-		current_state = squirrel_state.Idle
+		current_state = squirrel_state.Shoot
 
 # FUNCOES REFERENTES A ENTRADA E SAIDA DA ZONA DE TIRO DO ESQUILO
 func _on_shoot_area_body_entered(body : CharacterBody2D):
@@ -63,10 +63,12 @@ func _on_shoot_area_body_entered(body : CharacterBody2D):
 		print("ENTROU na Zona de Tiro")
 		player_position = player.global_position
 		has_target = true
+	current_state = squirrel_state.Shoot
 func _on_shoot_area_body_exited(body : CharacterBody2D):
 	if body.is_in_group("Player"):
 		print("SAIU da Zona de Tiro")
 		has_target = false
+		current_state = squirrel_state.Idle
 
 func _on_squirrel_shoot_timeout():
 	if current_state != squirrel_state.Chase && current_state != squirrel_state.Idle:
