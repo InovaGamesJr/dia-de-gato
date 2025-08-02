@@ -11,7 +11,6 @@ config_version=5
 [application]
 
 config/name="Saida de emergencia"
-run/main_scene="res://scenes/other_map.tscn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -32,7 +31,13 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/nklbdev.aseprite_importers/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
+enabled=PackedStringArray("res://addons/nklbdev.aseprite_importers/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/trail_2d/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://script/": "purple"
+}
 
 [global_group]
 

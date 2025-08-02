@@ -1,63 +1,18 @@
-[gd_scene load_steps=96 format=3 uid="uid://dwhxr5xmal0lu"]
+[gd_scene load_steps=66 format=3 uid="uid://dwhxr5xmal0lu"]
 
 [ext_resource type="Script" uid="uid://dhf4kdfrlxbf4" path="res://script/Player/Gato.gd" id="1_nkuau"]
-[ext_resource type="Texture2D" uid="uid://dvqu5p4mbrcvo" path="res://assets/sprites/gato_sprites/Dash.png" id="2_dt8mf"]
-[ext_resource type="Texture2D" uid="uid://c7s2li8pvg1tm" path="res://assets/sprites/gato_sprites/Ataque.png" id="2_jn5ls"]
-[ext_resource type="Texture2D" uid="uid://bxs26fycmhr8d" path="res://assets/sprites/gato_sprites/Idle.png" id="3_eykq0"]
-[ext_resource type="Texture2D" uid="uid://myprtrssmcky" path="res://assets/sprites/gato_sprites/Pulo.png" id="4_ipu5h"]
-[ext_resource type="Texture2D" uid="uid://cfdw1amv58dn4" path="res://assets/sprites/gato_sprites/Movimentação.png" id="5_a0xst"]
-[ext_resource type="Texture2D" uid="uid://b6k7kfjrv34wk" path="res://assets/sprites/gato_sprites/Dano.png" id="5_l3aql"]
+[ext_resource type="Texture2D" uid="uid://dvqu5p4mbrcvo" path="res://assets/sprites/gato/Dash.png" id="2_dt8mf"]
+[ext_resource type="Texture2D" uid="uid://bxs26fycmhr8d" path="res://assets/sprites/gato/Idle.png" id="3_eykq0"]
+[ext_resource type="Texture2D" uid="uid://myprtrssmcky" path="res://assets/sprites/gato/Pulo.png" id="4_ipu5h"]
+[ext_resource type="Texture2D" uid="uid://cfdw1amv58dn4" path="res://assets/sprites/gato/Movimentação.png" id="5_a0xst"]
+[ext_resource type="Texture2D" uid="uid://b6k7kfjrv34wk" path="res://assets/sprites/gato/Dano.png" id="5_l3aql"]
 [ext_resource type="Script" uid="uid://bou2iapqbwfko" path="res://script/Player/Player_State_Machine/gato_state_machine.gd" id="7_bt7dp"]
 [ext_resource type="Script" uid="uid://cvdwinx2q5fjm" path="res://script/Player/Player_State_Machine/states/idle_state.gd" id="8_tcbsd"]
+[ext_resource type="Script" uid="uid://bit4m1flo1yfh" path="res://script/Player/Player_State_Machine/states/running_state.gd" id="9_ifa8a"]
 [ext_resource type="Script" uid="uid://deixjxljvwsys" path="res://script/Player/Player_State_Machine/states/jumping_state.gd" id="10_jn5ls"]
 [ext_resource type="Script" uid="uid://c4w21nh42f5pn" path="res://script/Player/Player_State_Machine/states/dash_state.gd" id="11_ps0uf"]
 [ext_resource type="Script" uid="uid://cjxmsf73k3n8c" path="res://script/Player/Player_State_Machine/states/climbing_state.gd" id="12_25a5w"]
 [ext_resource type="Script" uid="uid://d20x3e3acni8l" path="res://script/Player/Player_State_Machine/states/knockback_state.gd" id="13_tgpsb"]
-[ext_resource type="Script" uid="uid://blkfkdhdf23yj" path="res://script/Player/Player_State_Machine/states/attack_state.gd" id="14_ifa8a"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ps0uf"]
-atlas = ExtResource("2_jn5ls")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_25a5w"]
-atlas = ExtResource("2_jn5ls")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tgpsb"]
-atlas = ExtResource("2_jn5ls")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dtogy"]
-atlas = ExtResource("2_jn5ls")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bns6q"]
-atlas = ExtResource("2_jn5ls")
-region = Rect2(128, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fp8su"]
-atlas = ExtResource("2_jn5ls")
-region = Rect2(160, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_aoyoo"]
-atlas = ExtResource("2_jn5ls")
-region = Rect2(192, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j2it0"]
-atlas = ExtResource("2_jn5ls")
-region = Rect2(224, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_w0hxq"]
-atlas = ExtResource("2_jn5ls")
-region = Rect2(256, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_idetw"]
-atlas = ExtResource("2_jn5ls")
-region = Rect2(288, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p4nd5"]
-atlas = ExtResource("2_jn5ls")
-region = Rect2(320, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1kcnx"]
 atlas = ExtResource("2_dt8mf")
@@ -86,10 +41,6 @@ region = Rect2(160, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_qkgxg"]
 atlas = ExtResource("2_dt8mf")
 region = Rect2(192, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4d6xq"]
-atlas = ExtResource("4_ipu5h")
-region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xrb5w"]
 atlas = ExtResource("3_eykq0")
@@ -155,6 +106,10 @@ region = Rect2(32, 0, 32, 32)
 atlas = ExtResource("4_ipu5h")
 region = Rect2(64, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_4d6xq"]
+atlas = ExtResource("4_ipu5h")
+region = Rect2(96, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_sefnp"]
 atlas = ExtResource("5_l3aql")
 region = Rect2(0, 0, 32, 32)
@@ -203,44 +158,6 @@ region = Rect2(160, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ps0uf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_25a5w")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tgpsb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dtogy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bns6q")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fp8su")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_aoyoo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j2it0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_w0hxq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_idetw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p4nd5")
-}],
-"loop": true,
-"name": &"attack",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_1kcnx")
 }, {
 "duration": 1.0,
@@ -261,16 +178,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qkgxg")
 }],
-"loop": false,
-"name": &"dash",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4d6xq")
-}],
 "loop": true,
-"name": &"falling",
+"name": &"dash",
 "speed": 5.0
 }, {
 "frames": [{
@@ -379,8 +288,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w15dx"]
-radius = 7.0
-height = 16.0
+radius = 8.0
+height = 18.0
 
 [sub_resource type="Animation" id="Animation_brt4e"]
 length = 0.001
@@ -421,53 +330,10 @@ tracks/2/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_5pp5x"]
-resource_name = "attack"
-length = 0.4
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("animated_sprite_gato:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0375, 0.075, 0.1125, 0.15, 0.1875, 0.225, 0.2625, 0.3, 0.3375, 0.375),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("gato_state_machine/attack")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.4),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"change_state"
-}]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("animated_sprite_gato:animation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"attack"]
-}
-
 [sub_resource type="Animation" id="Animation_m04tm"]
 resource_name = "dash"
 length = 0.24
-step = 0.05
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -487,24 +353,10 @@ tracks/1/path = NodePath("animated_sprite_gato:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0375, 0.075, 0.1125, 0.15, 0.1875, 0.225),
+"times": PackedFloat32Array(0.00865406, 0.0421432, 0.0783649, 0.112384, 0.146683, 0.180229, 0.214906),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("gato_state_machine/dash")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.2375),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"change_state_in_animation_player"
-}]
 }
 
 [sub_resource type="Animation" id="Animation_bjet6"]
@@ -567,9 +419,26 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 }
 
+[sub_resource type="Animation" id="Animation_mll3j"]
+resource_name = "invicible"
+length = 0.809
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_8tl1e"]
 resource_name = "jumping"
-length = 0.3
+length = 0.4
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -590,29 +459,15 @@ tracks/1/path = NodePath("animated_sprite_gato:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [1, 2, 3]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("gato_state_machine/air")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"verify_state"
-}]
+"values": [0, 1, 2, 3]
 }
 
 [sub_resource type="Animation" id="Animation_mpqxx"]
 resource_name = "knockback"
-length = 0.4
+length = 0.2
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -633,10 +488,10 @@ tracks/1/path = NodePath("animated_sprite_gato:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.0375, 0.1, 0.1625, 0.225, 0.2875, 0.35),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 1, 2]
+"values": [0, 1, 2, 3]
 }
 
 [sub_resource type="Animation" id="Animation_txy4j"]
@@ -672,96 +527,44 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_86ksy"]
 _data = {
 &"RESET": SubResource("Animation_brt4e"),
-&"attack": SubResource("Animation_5pp5x"),
 &"dash": SubResource("Animation_m04tm"),
 &"falling": SubResource("Animation_bjet6"),
 &"idle": SubResource("Animation_s58mc"),
+&"invicible": SubResource("Animation_mll3j"),
 &"jumping": SubResource("Animation_8tl1e"),
 &"knockback": SubResource("Animation_mpqxx"),
 &"running": SubResource("Animation_txy4j")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xjxrx"]
-animation = &"attack"
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_tcbsd"]
+states/Start/position = Vector2(441, 100)
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ps0uf"]
-animation = &"dash"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_25a5w"]
-animation = &"falling"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tcbsd"]
-animation = &"idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jn5ls"]
-animation = &"jumping"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ifa8a"]
-animation = &"running"
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ifa8a"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jn5ls"]
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ps0uf"]
+advance_mode = 2
+advance_condition = &"running"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_25a5w"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tgpsb"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dtogy"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bns6q"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fp8su"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_aoyoo"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j2it0"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w0hxq"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_idetw"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8ajw3"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3vmo6"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gnyuv"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p4nd5"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5pp5x"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xjxrx"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"idle"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_tgpsb"]
 states/Start/position = Vector2(198, 100)
-states/attack/node = SubResource("AnimationNodeAnimation_xjxrx")
-states/attack/position = Vector2(686.112, 121.103)
-states/dash/node = SubResource("AnimationNodeAnimation_ps0uf")
-states/dash/position = Vector2(667.112, 14)
-states/falling/node = SubResource("AnimationNodeAnimation_25a5w")
-states/falling/position = Vector2(731.112, 191.982)
-states/idle/node = SubResource("AnimationNodeAnimation_tcbsd")
-states/idle/position = Vector2(373, 100)
-states/jumping/node = SubResource("AnimationNodeAnimation_jn5ls")
-states/jumping/position = Vector2(476, 7)
-states/running/node = SubResource("AnimationNodeAnimation_ifa8a")
-states/running/position = Vector2(528, 192)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_jn5ls"), "idle", "running", SubResource("AnimationNodeStateMachineTransition_ps0uf"), "running", "idle", SubResource("AnimationNodeStateMachineTransition_25a5w"), "idle", "jumping", SubResource("AnimationNodeStateMachineTransition_tgpsb"), "jumping", "idle", SubResource("AnimationNodeStateMachineTransition_dtogy"), "jumping", "dash", SubResource("AnimationNodeStateMachineTransition_bns6q"), "dash", "jumping", SubResource("AnimationNodeStateMachineTransition_fp8su"), "running", "dash", SubResource("AnimationNodeStateMachineTransition_aoyoo"), "idle", "dash", SubResource("AnimationNodeStateMachineTransition_j2it0"), "dash", "idle", SubResource("AnimationNodeStateMachineTransition_w0hxq"), "dash", "running", SubResource("AnimationNodeStateMachineTransition_idetw"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_8ajw3"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_3vmo6"), "running", "attack", SubResource("AnimationNodeStateMachineTransition_gnyuv"), "running", "falling", SubResource("AnimationNodeStateMachineTransition_p4nd5"), "dash", "falling", SubResource("AnimationNodeStateMachineTransition_5pp5x"), "falling", "dash", SubResource("AnimationNodeStateMachineTransition_xjxrx")]
-graph_offset = Vector2(-79.8881, -71.0184)
+states/idle/node = SubResource("AnimationNodeStateMachine_tcbsd")
+states/idle/position = Vector2(365, 100)
+states/running/node = SubResource("AnimationNodeStateMachine_ifa8a")
+states/running/position = Vector2(581, 100)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_jn5ls"), "idle", "running", SubResource("AnimationNodeStateMachineTransition_ps0uf"), "running", "idle", SubResource("AnimationNodeStateMachineTransition_25a5w")]
 
-[node name="gato" type="CharacterBody2D" node_paths=PackedStringArray("health_component", "state_machine", "animation_tree", "animated_sprite", "ground_state")]
+[node name="gato" type="CharacterBody2D" node_paths=PackedStringArray("animation", "spriteGato")]
 script = ExtResource("1_nkuau")
-health_component = NodePath("")
-state_machine = NodePath("gato_state_machine")
-animation_tree = NodePath("AnimationTree")
-animated_sprite = NodePath("animated_sprite_gato")
-ground_state = NodePath("gato_state_machine/ground")
-
-[node name="timer_dash" type="Timer" parent="."]
-wait_time = 6.0
-one_shot = true
+animation = NodePath("animacoes_gato")
+spriteGato = NodePath("animated_sprite_gato")
 
 [node name="animated_sprite_gato" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
@@ -771,55 +574,48 @@ autoplay = "idle"
 frame = 1
 
 [node name="colisao_gato" type="CollisionShape2D" parent="."]
-position = Vector2(0, -8)
+position = Vector2(0, -9)
 shape = SubResource("CapsuleShape2D_w15dx")
 
 [node name="animacoes_gato" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_86ksy")
 }
+autoplay = "idle"
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_tgpsb")
 anim_player = NodePath("../animacoes_gato")
+parameters/conditions/idle = false
+parameters/conditions/running = false
 
-[node name="gato_state_machine" type="Node" parent="." node_paths=PackedStringArray("character", "animation_tree", "sprite_character", "timer_dash", "current_state")]
+[node name="gato_state_machine" type="Node" parent="." node_paths=PackedStringArray("character", "animation_tree", "current_state")]
 script = ExtResource("7_bt7dp")
 character = NodePath("..")
 animation_tree = NodePath("../AnimationTree")
-sprite_character = NodePath("../animated_sprite_gato")
-timer_dash = NodePath("../timer_dash")
-current_state = NodePath("ground")
+current_state = NodePath("idle")
 
-[node name="ground" type="Node" parent="gato_state_machine" node_paths=PackedStringArray("air_state", "dash_state", "climb_state", "knockback_state", "attack_state")]
+[node name="idle" type="Node" parent="gato_state_machine" node_paths=PackedStringArray("air_state", "run_state", "dash_state")]
 script = ExtResource("8_tcbsd")
 air_state = NodePath("../air")
-dash_state = NodePath("../dash")
-climb_state = NodePath("../climbing")
-knockback_state = NodePath("../konckback")
-attack_state = NodePath("../attack")
-
-[node name="air" type="Node" parent="gato_state_machine" node_paths=PackedStringArray("idle_state", "dash_state")]
-script = ExtResource("10_jn5ls")
-idle_state = NodePath("../ground")
+run_state = NodePath("../running")
 dash_state = NodePath("../dash")
 
-[node name="dash" type="Node" parent="gato_state_machine" node_paths=PackedStringArray("ground_state", "air_state")]
-script = ExtResource("11_ps0uf")
-ground_state = NodePath("../ground")
+[node name="running" type="Node" parent="gato_state_machine" node_paths=PackedStringArray("idle_state", "air_state")]
+script = ExtResource("9_ifa8a")
+idle_state = NodePath("../idle")
 air_state = NodePath("../air")
-can_move = false
-apply_gravity = false
+can_move = null
+
+[node name="air" type="Node" parent="gato_state_machine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("10_jn5ls")
+idle_state = NodePath("../idle")
+
+[node name="dash" type="Node" parent="gato_state_machine"]
+script = ExtResource("11_ps0uf")
 
 [node name="climbing" type="Node" parent="gato_state_machine"]
 script = ExtResource("12_25a5w")
 
 [node name="konckback" type="Node" parent="gato_state_machine"]
 script = ExtResource("13_tgpsb")
-
-[node name="attack" type="Node" parent="gato_state_machine" node_paths=PackedStringArray("ground_state")]
-script = ExtResource("14_ifa8a")
-ground_state = NodePath("../ground")
-can_move = false
-
-[connection signal="animation_finished" from="animacoes_gato" to="gato_state_machine/dash" method="_on_animacoes_gato_animation_finished"]

@@ -1,12 +1,12 @@
-[gd_scene load_steps=89 format=3 uid="uid://i8njwppn3gil"]
+[gd_scene load_steps=83 format=3 uid="uid://i8njwppn3gil"]
 
 [ext_resource type="Script" uid="uid://dlasxfne7yw67" path="res://script/Bosses/esquilo_boss/esquiloBoss.gd" id="1_ip27w"]
 [ext_resource type="Texture2D" uid="uid://cgdeyuosr0tcb" path="res://assets/sprites/esquilo_boss/sprites/soco-Sheet-Sheet.png" id="2_c1gke"]
 [ext_resource type="Texture2D" uid="uid://bs3oyguaysmef" path="res://assets/sprites/esquilo_boss/sprites/morreu-Sheet.png" id="3_rwpgn"]
 [ext_resource type="Texture2D" uid="uid://bvsj6lg60ohot" path="res://assets/sprites/esquilo_boss/sprites/boss mecha-Idle-Sheet.png" id="4_01n5k"]
-[ext_resource type="Texture2D" uid="uid://c6e2frrux7toi" path="res://assets/sprites/esquilo_boss/sprites/tiro de cima-Sheet.png" id="4_hfiy5"]
 [ext_resource type="Texture2D" uid="uid://dre0mjpxa6uho" path="res://assets/sprites/esquilo_boss/sprites/boss mecha-movimento-Sheet.png" id="5_2j3ge"]
 [ext_resource type="Texture2D" uid="uid://cb2wirnodvple" path="res://assets/sprites/esquilo_boss/sprites/salto-Sheet.png" id="5_e8w6d"]
+[ext_resource type="PackedScene" uid="uid://oi2yo2roajgh" path="res://cpu_particles_2d.tscn" id="7_01n5k"]
 [ext_resource type="Texture2D" uid="uid://b2k8qhteeeum1" path="res://assets/sprites/esquilo_boss/sprites/flik-Sheet.png" id="7_5hmbr"]
 [ext_resource type="Script" uid="uid://ciwy7e6obnlpi" path="res://script/Bosses/esquilo_boss/esquilo_state_machine.gd" id="9_hfiy5"]
 [ext_resource type="Script" uid="uid://b3tclb8pe2uoe" path="res://script/Bosses/esquilo_boss/idle_state.gd" id="10_5y387"]
@@ -144,30 +144,6 @@ region = Rect2(1200, 0, 48, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_6a5ok"]
 atlas = ExtResource("3_rwpgn")
 region = Rect2(1248, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mx2ml"]
-atlas = ExtResource("4_hfiy5")
-region = Rect2(0, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_w84rx"]
-atlas = ExtResource("4_hfiy5")
-region = Rect2(48, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_33cpx"]
-atlas = ExtResource("4_hfiy5")
-region = Rect2(96, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dn3ex"]
-atlas = ExtResource("4_hfiy5")
-region = Rect2(144, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tsd42"]
-atlas = ExtResource("4_hfiy5")
-region = Rect2(192, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5cgc7"]
-atlas = ExtResource("4_hfiy5")
-region = Rect2(240, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pneyp"]
 atlas = ExtResource("4_01n5k")
@@ -370,29 +346,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mx2ml")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_w84rx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_33cpx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dn3ex")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tsd42")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5cgc7")
-}],
-"loop": true,
-"name": &"fling",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_pneyp")
 }, {
 "duration": 1.0,
@@ -489,7 +442,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("esquilo_animated_sprite:animation")
+tracks/0/path = NodePath("Sprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -501,7 +454,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("esquilo_animated_sprite:frame")
+tracks/1/path = NodePath("Sprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -517,7 +470,7 @@ length = 0.55
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("esquilo_animated_sprite:animation")
+tracks/0/path = NodePath("Sprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -529,7 +482,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("esquilo_animated_sprite:frame")
+tracks/1/path = NodePath("Sprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -561,7 +514,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("esquilo_animated_sprite:animation")
+tracks/0/path = NodePath("Sprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -573,7 +526,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("esquilo_animated_sprite:frame")
+tracks/1/path = NodePath("Sprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -603,7 +556,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("esquilo_animated_sprite:animation")
+tracks/1/path = NodePath("Sprite2D:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -615,7 +568,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("esquilo_animated_sprite:frame")
+tracks/2/path = NodePath("Sprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -627,7 +580,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("colisao_esquilo:disabled")
+tracks/3/path = NodePath("Colisão esquilo:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -720,7 +673,7 @@ resource_name = "shooting"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("esquilo_animated_sprite:animation")
+tracks/0/path = NodePath("Sprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -763,30 +716,39 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 [node name="Esquilo" type="CharacterBody2D"]
 script = ExtResource("1_ip27w")
 
-[node name="esquilo_animated_sprite" type="AnimatedSprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4yhvh")
 animation = &"attack"
 flip_h = true
 
-[node name="colisao_esquilo" type="CollisionShape2D" parent="."]
+[node name="Colisão esquilo" type="CollisionShape2D" parent="."]
 position = Vector2(-6, 6)
 shape = SubResource("CapsuleShape2D_gor7f")
 
-[node name="animation_player" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_tvlch")
 }
 
-[node name="animation_tree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_e8w6d")
-anim_player = NodePath("../animation_player")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="Flamethrower" parent="." instance=ExtResource("7_01n5k")]
+position = Vector2(-25, 7)
+amount = 200
+initial_velocity_min = 70.0
+initial_velocity_max = 80.0
 
 [node name="esquilo_state_machine" type="Node" parent="." node_paths=PackedStringArray("character", "animation_tree", "sprite_character", "collision", "current_state")]
 script = ExtResource("9_hfiy5")
 character = NodePath("..")
-animation_tree = NodePath("../animation_tree")
-sprite_character = NodePath("../esquilo_animated_sprite")
-collision = NodePath("../colisao_esquilo")
+animation_tree = NodePath("../AnimationTree")
+sprite_character = NodePath("../Sprite2D")
+collision = NodePath("../Colisão esquilo")
 current_state = NodePath("idle_state")
 
 [node name="idle_state" type="Node" parent="esquilo_state_machine" node_paths=PackedStringArray("jump_state", "attack_on_air")]
@@ -799,3 +761,6 @@ script = ExtResource("11_03bjv")
 
 [node name="attack_on_air" type="Node" parent="esquilo_state_machine"]
 script = ExtResource("12_5hmbr")
+can_move = null
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

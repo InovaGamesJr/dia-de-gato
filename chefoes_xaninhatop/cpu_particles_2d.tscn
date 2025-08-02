@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://oi2yo2roajgh"]
+
+[sub_resource type="Curve" id="Curve_cbati"]
+_data = [Vector2(0.0125, 0.101124), 0.0, 0.0, 0, 0, Vector2(0.2125, 0.629214), 0.0, 0.0, 0, 0, Vector2(0.44375, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_in1mk"]
+offsets = PackedFloat32Array(0, 0.328358, 0.641791, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.776798, 0.51553, 0.249886, 1, 0.699815, 0.3234, 0, 1, 0.490196, 0.0745098, 0.0941176, 1)
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+emitting = false
+amount = 150
+lifetime = 2.01
+direction = Vector2(-1, 0)
+spread = 2.0
+gravity = Vector2(-100, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+scale_amount_min = 10.0
+scale_amount_max = 12.0
+scale_amount_curve = SubResource("Curve_cbati")
+color_ramp = SubResource("Gradient_in1mk")

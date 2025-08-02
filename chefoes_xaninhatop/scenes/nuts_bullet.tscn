@@ -1,0 +1,229 @@
+[gd_scene load_steps=18 format=3 uid="uid://cjyxalvqy7g66"]
+
+[ext_resource type="Script" uid="uid://cbh53gg8ybvr7" path="res://script/Bosses/nuts_bullet.gd" id="1_538ju"]
+[ext_resource type="AudioStream" uid="uid://djhxgos68yaqp" path="res://assets/sprites/esquilo_boss/effects/snd_bomb.wav" id="2_538ju"]
+
+[sub_resource type="Animation" id="Animation_538ju"]
+resource_name = "bullet"
+length = 0.31
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("animated_sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"bullet"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("animated_sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("animated_sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("collision_bullet:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_780au"]
+resource_name = "kaboom"
+length = 0.31
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("animated_sprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"kaboom"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("animated_sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("animated_sprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 10)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("collision_bullet:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_780au"]
+_data = {
+&"bullet": SubResource("Animation_538ju"),
+&"kaboom": SubResource("Animation_780au")
+}
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x1o2u"]
+load_path = "res://.godot/imported/projetil boss -Sheet.png-87848161a37d2ffb617ccf79f4d2bd23.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0myv1"]
+atlas = SubResource("CompressedTexture2D_x1o2u")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xq18b"]
+atlas = SubResource("CompressedTexture2D_x1o2u")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgirm"]
+atlas = SubResource("CompressedTexture2D_x1o2u")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqhjh"]
+atlas = SubResource("CompressedTexture2D_x1o2u")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_538ju"]
+load_path = "res://.godot/imported/Kboom-Sheet.png-07d0a1daccab3d84c3f9af8e8fb5323c.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0eos"]
+atlas = SubResource("CompressedTexture2D_538ju")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aapsy"]
+atlas = SubResource("CompressedTexture2D_538ju")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_deopk"]
+atlas = SubResource("CompressedTexture2D_538ju")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ilnfn"]
+atlas = SubResource("CompressedTexture2D_538ju")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g0eos"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0myv1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xq18b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pgirm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lqhjh")
+}],
+"loop": false,
+"name": &"bullet",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0eos")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aapsy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_deopk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ilnfn")
+}],
+"loop": false,
+"name": &"kaboom",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_538ju"]
+radius = 4.0
+
+[node name="nuts_bullet" type="CharacterBody2D" node_paths=PackedStringArray("animation_player_bullet")]
+scale = Vector2(2, 2)
+script = ExtResource("1_538ju")
+animation_player_bullet = NodePath("animation_bullet")
+
+[node name="animation_bullet" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_780au")
+}
+
+[node name="animated_sprite" type="AnimatedSprite2D" parent="."]
+rotation = -1.5708
+sprite_frames = SubResource("SpriteFrames_g0eos")
+animation = &"bullet"
+
+[node name="collision_bullet" type="CollisionShape2D" parent="."]
+position = Vector2(10, 0)
+shape = SubResource("CircleShape2D_538ju")
+disabled = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_538ju")
+volume_db = -12.0
